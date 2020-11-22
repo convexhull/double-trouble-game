@@ -1,0 +1,35 @@
+/********** css for question **********/
+
+.question {
+    cursor: pointer;
+}
+
+.question--red {
+    color: red;
+}
+
+
+.question--blue {
+    color: blue;
+}
+
+
+/********** css for options**********/
+
+.options {
+    display: flex;
+}   
+
+
+.option {
+    cursor: pointer;
+}
+
+.option--red {
+    color: red;
+}       
+
+
+.option--blue {
+    color: blue;
+}   
