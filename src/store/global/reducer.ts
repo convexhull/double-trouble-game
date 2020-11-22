@@ -33,11 +33,11 @@ const reducer: Reducer<GlobalState, TimerActions> = (state = initState, action) 
                 timer: {
                     ...state.timer,
                     running: false,
-                    baseTime: 0,
                     timeRemaining: 0
                 }
             };
         case TIMER_START:
+            /*rev*/
             return {
                 ...state,
                 timer: {

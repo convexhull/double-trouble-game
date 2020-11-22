@@ -31,7 +31,7 @@ const timerTick = (): TimerTickAction => {
 }
 
 
-const timerReset = (): TimerResetAction => {
+export const timerReset = (): TimerResetAction => {
     return {
         type: TIMER_RESET
     }
@@ -47,10 +47,6 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
 
                 //cleanup the setInterval in the last second
                 clearInterval(setIntervalId);
-
-                //reset the timer
-                dispatch(timerReset());
-                return ;
             }
 
             //if not last second, simply send a tick action
@@ -62,4 +58,5 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
         }));
     })
 }
+
 

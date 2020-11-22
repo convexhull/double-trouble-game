@@ -4,7 +4,7 @@ import { connect, ConnectedProps } from 'react-redux';
 
 /**
  * This is the StartButton component. It has internal timer of 3s for the 3s delay before starting
- * the game. Once 3s elapse, the game timer(managed by redux) is started and game begins. 
+ * the game. Once 3s elapse, the central game timer(managed by redux) is started and game begins. 
  */
 
 //import styles
@@ -50,6 +50,7 @@ class StartButton extends React.Component<AllProps, State> {
     }
 
     clickHandler = () => {
+
         // When start button is clicked, timerRunning is set to true
         this.setState({
             timerRunning: true
@@ -65,7 +66,7 @@ class StartButton extends React.Component<AllProps, State> {
                 //clean up the setInterval(for the local timer) 
                 clearInterval(this.setIntervalReference);
                 //start the central redux game timer.
-                this.props.onStartGameTimer(10);
+                this.props.onStartGameTimer(5);
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {
@@ -75,7 +76,6 @@ class StartButton extends React.Component<AllProps, State> {
                 }
             })
         }, 1000);
-
     }
 
     render() {
