@@ -12,3 +12,18 @@
 .start-btn img {
     color: blue;
 }
+
+
+
+
+/********** count-down display*************/
+
+.countdown-display {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 124px;
+    height: 124px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

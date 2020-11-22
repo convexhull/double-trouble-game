@@ -1,7 +1,7 @@
 //import npm modules
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link, Route, RouteComponentProps } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 
 
@@ -27,22 +27,37 @@ import { RootState } from '../../../store/store';
  */
 
 
+type State = {
+
+}
+
+
+
 type PropsFromParent = {
     name: string;
     age: number;
 }
 
-type PropsFromDispatch = {
-    onLoad: () => any;
-    introText: string;
-}
-
-
-type AllProps = PropsFromDispatch & PropsFromParent & RouteComponentProps;
-
-type State = {
+const mapStateToProps = (state: RootState) => {
+    return {
+        name: state.gameState.name,
+        introText: state.gameState.intro_text
+    }
 
 }
+
+
+const mapDispatchToProps = {
+    onLoad: () => (gameActions.asyncFetchGameInfoStart())
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+
+
+type AllProps = PropsFromParent & RouteComponentProps & PropsFromRedux;
 
 class IntroductionPage extends React.Component<AllProps, State> {
 
@@ -66,17 +81,5 @@ class IntroductionPage extends React.Component<AllProps, State> {
     }
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        name: state.gameState.name,
-        introText: state.gameState.intro_text
-    }
 
-}
-
-
-const mapDispatchToProps = {
-    onLoad: () => (gameActions.asyncFetchGameInfoStart())
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(IntroductionPage);
+export default connector(IntroductionPage);

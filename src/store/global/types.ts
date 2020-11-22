@@ -1,60 +1,47 @@
+/**
+ * Type for 'global' slice of the app state
+ */
 
-
-
-
-
+export type GlobalState = {
+    timer: {
+         running: boolean;
+         baseTime: number;
+         timeRemaining: number;
+    }
+ }
 
 /**
- * Redux action types for dispatch
+ * Redux action types
  */
-export const FETCH_GAME_INFO_START: string = "FETCH_GAME_INFO_START";
-export const FETCH_GAME_INFO_SUCCESS: string = "FETCH_GAME_INFO_SUCCESS";
-export const FETCH_GAME_INFO_FAILURE: string = "FETCH_GAME_INFO_FAILURE";
-
+export const TIMER_START: string = "TIMER_START";
+export const TIMER_RESET: string = "TIMER_RESET";
+export const TIMER_TICK: string = "TIMER_TICK";
 
 
 /**
  * Types for payloads for different actions
  */
-
-export type GameInfoStartPayload = {
-    loading: boolean;
+export type TimerStartPayload = {
+    baseTime: number;
 }
-
-export type GameInfoSuccessPayload = {
-    id: string;
-    name: string;
-    intro_text: string;
-    farewell_text: string;
-    time: number;
-}
-
-export type GameInfoFailurePayload = {
-    errorMessage: string;
-    errorCode: number;
-}
-
 
 /**
  * Types for various actions
  */
 
-type FetchGameInfoStartAction = {
-    type: typeof FETCH_GAME_INFO_START;
-    payload: GameInfoStartPayload;
+export interface TimerStartAction {
+    type: string;
+    payload: TimerStartPayload
+}
+
+export interface TimerResetAction {
+    type: string;
+}
+
+export interface TimerTickAction {
+    type: string;
 }
 
 
-type FetchGameInfoSuccessAction = {
-    type: typeof FETCH_GAME_INFO_SUCCESS;
-    payload: GameInfoSuccessPayload;
-}
+export type TimerActions =  TimerStartAction | TimerResetAction | TimerTickAction ;
 
-
-type FetchGameInfoFailureAction = {
-    type: typeof FETCH_GAME_INFO_SUCCESS;
-    payload: GameInfoFailurePayload;
-}
-
-
-export type FetchGameInfoActions =  FetchGameInfoStartAction | FetchGameInfoSuccessAction | FetchGameInfoFailureAction;

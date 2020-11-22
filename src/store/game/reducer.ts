@@ -7,11 +7,13 @@ import {
 } from './types';
 
 const initState: GameState = {
+    // here time refers to total time allowed, timeRemaining refers to remaining time(countdown)
     id: '',
     name: '',
     intro_text: '',
     farewell_text: '',
-    time: 0
+    time: 0,
+    timeRemaining: null
 }
 
 
@@ -20,7 +22,15 @@ const reducer = (state = initState, action: FetchGameInfoActions ) => {
         case FETCH_GAME_INFO_SUCCESS:
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
+            }
+        case FETCH_GAME_INFO_START:
+            return {
+                ...state
+            }
+        case FETCH_GAME_INFO_FAILURE:
+            return {
+                ...state
             }
         default:
             return state;
