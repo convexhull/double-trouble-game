@@ -1,5 +1,14 @@
+//import npm modules
 import React from 'react';
+import { connect } from 'react-redux';
 
+
+
+// import modules
+import * as gameActions from '../../../store/game/actionCreators';
+
+//import types
+import { RootState } from '../../../store/store';
 
 
 
@@ -16,19 +25,26 @@ import React from 'react';
  */
 
 
-type Props = {
+type PropsFromParent = {
     name: string,
-    age: number
+    age: number,
 }
+
+type PropsFromDispatch = {
+    onLoad: () => any
+}
+
+
+type AllProps = PropsFromDispatch & PropsFromParent;
 
 type State = {
 
 }
 
-class IntroductionPage extends React.Component<Props, State> {
+class IntroductionPage extends React.Component<AllProps, State> {
 
     componentDidMount() {
-
+        this.props.onLoad();
     }
 
     state: State = {
@@ -39,11 +55,22 @@ class IntroductionPage extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                Welcome to Double Trouble!!!
+                Welcome to {this.props.name}
             </div>
         )
     }
 }
 
+const mapStateToProps = (state: RootState) => {
+    return {
+        name: state.gameState.name
+    }
 
-export default IntroductionPage;
+}   
+
+
+const mapDispatchToProps = {
+    onLoad: () => (gameActions.asyncFetchGameInfoStart())
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IntroductionPage);

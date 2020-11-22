@@ -14,24 +14,14 @@ export const FETCH_GAME_INFO_FAILURE: string = "FETCH_GAME_INFO_FAILURE";
 
 
 /**
- * Types for payloads for different actions
+ * Type for GameState slice of the app state
  */
-
-export type GameInfoStartPayload = {
-    loading: boolean;
-}
-
-export type GameInfoSuccessPayload = {
+export type GameState = {
     id: string;
     name: string;
     intro_text: string;
     farewell_text: string;
     time: number;
-}
-
-export type GameInfoFailurePayload = {
-    errorMessage: string;
-    errorCode: number;
 }
 
 
@@ -41,19 +31,24 @@ export type GameInfoFailurePayload = {
 
 type FetchGameInfoStartAction = {
     type: typeof FETCH_GAME_INFO_START;
-    payload: GameInfoStartPayload;
+    payload:{
+        loading: boolean;
+    }
 }
 
 
 type FetchGameInfoSuccessAction = {
     type: typeof FETCH_GAME_INFO_SUCCESS;
-    payload: GameInfoSuccessPayload;
+    payload: GameState
 }
 
 
 type FetchGameInfoFailureAction = {
     type: typeof FETCH_GAME_INFO_SUCCESS;
-    payload: GameInfoFailurePayload;
+    payload: {
+        errorMessage: string;
+        errorCode: number
+    }
 }
 
 
