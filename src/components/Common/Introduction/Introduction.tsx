@@ -1,6 +1,8 @@
 //import npm modules
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, Route, RouteComponentProps } from 'react-router-dom';
+
 
 
 
@@ -26,16 +28,17 @@ import { RootState } from '../../../store/store';
 
 
 type PropsFromParent = {
-    name: string,
-    age: number,
+    name: string;
+    age: number;
 }
 
 type PropsFromDispatch = {
-    onLoad: () => any
+    onLoad: () => any;
+    introText: string;
 }
 
 
-type AllProps = PropsFromDispatch & PropsFromParent;
+type AllProps = PropsFromDispatch & PropsFromParent & RouteComponentProps;
 
 type State = {
 
@@ -51,11 +54,13 @@ class IntroductionPage extends React.Component<AllProps, State> {
 
     }
 
-
     render() {
+        let introText = this.props.introText;
         return (
             <div>
-                Welcome to {this.props.name}
+                {introText}
+                {/*rev*/}
+                <Link to={`/double-trouble/play`}>I understand</Link>
             </div>
         )
     }
@@ -63,10 +68,11 @@ class IntroductionPage extends React.Component<AllProps, State> {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        name: state.gameState.name
+        name: state.gameState.name,
+        introText: state.gameState.intro_text
     }
 
-}   
+}
 
 
 const mapDispatchToProps = {

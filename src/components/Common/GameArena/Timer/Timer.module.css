@@ -1,0 +1,21 @@
+.Container {
+    
+}
+
+
+
+
+.timer-progressbar-container {
+    height: 300px;
+    width: 5px;
+    background-color: maroon;
+    position: relative;
+}
+
+.timer-progressbar {
+    width: 5px;
+    background-color: pink;
+    border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+}

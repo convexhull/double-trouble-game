@@ -8,7 +8,8 @@ import GameResult from '../../components/Common/GameResult/GameResult';
 
 
 interface Props extends RouteComponentProps {
-    
+    name: string;
+    age: number
 }
 
 type State = {
