@@ -1,15 +1,16 @@
 import React from 'react';
+
+
 import { connect, ConnectedProps } from 'react-redux';
 
 /**
  * 
- * This component renders the Timer section in the game arena. It features a countdown progress bar and a 
- * digital timer showing seconds left in the game. 
+ * This component displays the control panel consisting of Volume control, countdown timer progress bar and the scorecard
  * 
  */
 
 //import styles
-import classes from './Timer.module.css';
+import classes from './ControlPanel.module.css';
 
 
 //import types
@@ -17,8 +18,10 @@ import { RootState } from '../../../../store/store';
 
 
 
-//import files
-
+//import components
+import Timer from './Timer/Timer';
+import Score from './Score/Score';
+import Volume from './Volume/Volume';
 
 
 
@@ -48,25 +51,23 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type AllProps = PropsFromParents & PropsFromRedux;
 
 
-class Timer extends React.Component<AllProps, State> {
+class ControlPanel extends React.Component<AllProps, State> {
 
     render() {
-        let max_height = 300;
-        let remaining_height = (max_height / this.props.baseTime) * this.props.timeRemaining;
         return (
             <div className={classes["Container"]}>
-                <div className={classes["timer-progressbar-container"]}>
-                    <div className={classes["timer-progressbar"]} style={{ height: remaining_height }}>
-
-                    </div>
+                <div className={classes["timer"]}>
+                    <Timer />
                 </div>
-
-                <div className={classes["timer-digital"]}>
-                    {this.props.timeRemaining}
+                <div className={classes["score"]}>
+                    <Score />
+                </div>
+                <div className={classes["volume"]}>
+                    <Volume />
                 </div>
             </div>
         )
     }
 }
 
-export default connector(Timer);
+export default connector(ControlPanel);

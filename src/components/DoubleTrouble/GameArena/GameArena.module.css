@@ -1,4 +1,10 @@
-/* .Timer {
-    width: 100px;
-    height: 100px;
-} */
+.Container {
+    display: flex;
+    background: rgba(35, 24, 38, 1) 0% 0% no-repeat padding-box;
+}
+
+.control-panel {
+    margin-left: auto;
+    width: 143px;
+    height: 100vh;
+}

@@ -1,0 +1,17 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.timer {
+    flex-basis: 70%;
+}
+
+.score {
+    flex-basis: 15%;
+}
+
+.volume {
+    flex-basis: 15%;
+}

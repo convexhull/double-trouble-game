@@ -1,0 +1,49 @@
+.Container {
+    --height: 106px;
+
+}
+
+
+.text-box {
+    font-size: 2rem;
+    border: 1px solid var(--light-purple);
+    width: 205px;
+    height: var(--height);
+    border-radius: calc(var(--height)/2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.question--red {
+    color: var(--standard-red);
+}
+
+
+
+.question--blue {
+    color: var(--standard-blue);
+}
+
+
+.options {
+    display: flex;
+}
+
+
+
+
+
+.option--red {
+    color: var(--standard-red);
+}
+
+
+.option--blue {
+    color: var(--standard-blue);
+}
+
+.option--hoverable {
+
+}

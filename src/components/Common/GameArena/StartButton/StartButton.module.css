@@ -2,11 +2,13 @@
     background: url('../../../../assets/images/start-game-btn/default.svg');
     height: 124px;
     width: 124px;
+
 }
 
 
 .start-btn:hover {
     background: url('../../../../assets/images/start-game-btn/hover.svg');
+    cursor: pointer;
 }
 
 .start-btn img {

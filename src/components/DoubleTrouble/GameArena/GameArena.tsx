@@ -20,9 +20,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import classes from './GameArena.module.css';
 
 //import components
-import Timer from '../../Common/GameArena/Timer/Timer';
+import ControlPanel from '../../Common/GameArena/ControlPanel/ControlPanel';
 import StartButton from '../../Common/GameArena/StartButton/StartButton';
-import GamePlay from './Gameplay/Gameplay';
+import GamePlay from '../Gameplay/Gameplay';
 
 
 //import types
@@ -72,10 +72,9 @@ class GameArena extends React.Component<AllProps, State> {
     render() {
         return (
             <div className={classes["Container"]}>
-                GAMEE!!!!
                 {this.props.timerRunning ? <GamePlay /> : <StartButton />}
-                <div className={classes["timer"]}>
-                    <Timer />
+                <div className={classes["control-panel"]}>
+                    <ControlPanel />
                 </div>
             </div>
         )

@@ -1,24 +1,28 @@
 import React from 'react';
-import { connect, ConnectedProps} from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 
 
 //import files
-import data from './data.json';
+import data from './questions.json';
+
+
+//import components
+import QuestionCard from '../UI/QuestionCard/QuestionCard';
 
 //import styles
 import classes from './Gameplay.module.css';
 
 //import utils and helpers
-import * as GameUtils from '../../../../shared/utils/doubleTrouble';
+import * as GameUtils from '../../../shared/utils/doubleTrouble';
 
 
 //import types
-import { Question, Answer } from '../../../../shared/types/doubleTrouble';
+import { Question, Answer } from '../../../shared/types/doubleTrouble';
 
 
 //import actions
-import * as gameActions from '../../../../store/game/actionCreators';
-import { RootState } from '../../../../store/store';
+import * as gameActions from '../../../store/game/actionCreators';
+import { RootState } from '../../../store/store';
 
 /**
  * This Gameplay component consists of the actual game. This component is imported into the game arena.
@@ -58,7 +62,7 @@ type AllProps = PropsFromParents & PropsFromRedux;
 
 class Gameplay extends React.Component<AllProps, State> {
 
-    constructor(props: AllProps){
+    constructor(props: AllProps) {
         super(props);
         this.state = {
             questionCounter: 0
@@ -70,7 +74,7 @@ class Gameplay extends React.Component<AllProps, State> {
 
         //score is 1 if answer is correct, false otherwise
         let score = GameUtils.checkAnswer(question, answer) ? 1 : 0;
-        if(score === 1){
+        if (score === 1) {
             this.props.onIncrementScore();
         }
     }
@@ -79,30 +83,24 @@ class Gameplay extends React.Component<AllProps, State> {
         //Logic to pick current question. The modulo operator ensures that our questions get repeated once we are beyond
         //the question bank limit.
         let question = data[this.state.questionCounter % data.length];
+
         
-        //assign css classes dynamically to question text(for font color assignment)
-        let questionTextClasses = [classes["question"]];
-        if(question.question.color === "red"){
-            questionTextClasses.push(classes["question--red"]);
-        } else {
-            questionTextClasses.push(classes["question--blue"]);
-        }
 
 
         //assign css classes dynamically to option texts(for font color assignment)
-        let options = question.options.map( (option) => {
+        let options = question.options.map((option) => {
             let optionTextClasses = [classes["option"]];
-            if(option.color === "red"){
+            if (option.color === "red") {
                 optionTextClasses.push(classes["option--red"]);
             } else {
                 optionTextClasses.push(classes["option--blue"]);
             }
             return <p onClick={() => this.optionClickHandler(question, option)} className={optionTextClasses.join(' ')}>{option.text}</p>;
         })
-       
+
         return (
             <div className={classes["Container"]}>
-                <p className={questionTextClasses.join(' ')}>{question.question.text}</p>
+                <QuestionCard question={question} hoverable />
                 <div className={classes["options"]}>
                     {options}
                 </div>

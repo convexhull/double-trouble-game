@@ -1,0 +1,51 @@
+.Container {
+    width: 100%;
+    background: linear-gradient(0,rgba(188, 150, 230, 0.15),rgba(188, 150, 230, 0.15));
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+
+
+.timer-progressbar-container {
+    margin: 0 auto;
+    /* height: 300px; */
+    width: 5px;
+    background-color: maroon;
+    position: relative;
+    flex-basis: 80%;
+}
+
+.timer-progressbar {
+    width: 5px;
+    background-color: pink;
+    border: 1px solid black;
+    position: absolute;
+    bottom: 0;
+
+}
+
+
+
+.timer-digital {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.timer-digital__title {
+    letter-spacing: 2.8px;
+    margin-bottom: 0.5rem;
+    color: rgba(188, 150, 230, 1);
+}
+
+
+
+.timer-digital__value {
+    font-size: 2rem;
+}

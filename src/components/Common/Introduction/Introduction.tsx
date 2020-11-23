@@ -4,16 +4,6 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 
-
-
-// import modules
-import * as gameActions from '../../../store/game/actionCreators';
-
-//import types
-import { RootState } from '../../../store/store';
-
-
-
 /**
  * 
  * ## Introduction Page component ## 
@@ -25,6 +15,20 @@ import { RootState } from '../../../store/store';
  * game's page.
  * 
  */
+
+// import modules
+import * as gameActions from '../../../store/game/actionCreators';
+
+//import types
+import { RootState } from '../../../store/store';
+
+
+//import styles
+import classes from './Introduction.module.css';
+
+
+
+
 
 
 type State = {
@@ -70,10 +74,10 @@ class IntroductionPage extends React.Component<AllProps, State> {
     }
 
     render() {
-        let introText = this.props.introText;
         return (
-            <div>
-                {introText}
+            <div className={classes["Container"]}>
+                <h1 className={classes["title"]}>Instructions</h1>
+                <p>{this.props.introText}</p>
                 {/*rev*/}
                 <Link to={`/double-trouble/play`}>I understand</Link>
             </div>
