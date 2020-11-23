@@ -1,8 +1,16 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
 .start-btn {
     background: url('../../../../assets/images/start-game-btn/default.svg');
     height: 124px;
     width: 124px;
-
+    margin-top: 10rem;
 }
 
 
@@ -16,6 +24,21 @@
 }
 
 
+.start-game-text {
+    color: var(--lime-green);
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.intro-link {
+    margin-top: 10rem;
+    font-size: 20px;
+}
+
+.intro-link a:visited, .intro-link a:link {
+    color: white;
+}
+
 
 
 /********** count-down display*************/
@@ -28,4 +51,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10rem;
 }

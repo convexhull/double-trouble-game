@@ -1,6 +1,7 @@
 //import modules
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /**
  * This is the StartButton component. It has internal timer of 3s for the 3s delay before starting
@@ -89,6 +90,10 @@ class StartButton extends React.Component<AllProps, State> {
         return (
             <div className={classes["Container"]}>
                 {startButton}
+                <p className={classes["start-game-text"]}>Start the game</p>
+                <div className={classes["intro-link"]}>
+                    <Link  to="./intro">Instructions</Link>
+                </div>
             </div>
         )
     }
