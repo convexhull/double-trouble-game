@@ -3,10 +3,12 @@ import { connect, ConnectedProps } from 'react-redux';
 
 
 /**
- * This component displays user's score in the game and dispatches update action to update score info in the backend.
+ * This component displays user's score in the game and dispatches update action to update score info in the backend
+ * and then shows the updated score. 
  */
 
-
+//import styles
+import classes from './GameResult.module.css';
 
 //import action creators
 import * as gameActions from '../../../store/game/actionCreators';
@@ -55,9 +57,18 @@ class GameResult extends React.Component<AllProps, State> {
 
     render() {
         return (
-            <div>
-                RESULT TIME!!!
-                Your Score: {this.props.updatedScore}
+            <div className={classes["Container"]}>
+                <p className={classes["greet"]}>
+                    Thank you!
+                </p>
+                <div className={classes["game-score"]}>
+                    <span>
+                        Your Score is {this.props.updatedScore}
+                    </span>
+                </div>
+                <p className={classes["final-word"]}>
+                    We will reach you as soon as we carefully review your interview.
+                </p>
             </div>
         )
     }

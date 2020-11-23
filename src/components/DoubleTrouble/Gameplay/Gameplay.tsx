@@ -77,34 +77,24 @@ class Gameplay extends React.Component<AllProps, State> {
         if (score === 1) {
             this.props.onIncrementScore();
         }
+
+        this.setState((state) => {
+            return {
+                questionCounter: state.questionCounter + 1
+            }
+        })
     }
 
     render() {
         //Logic to pick current question. The modulo operator ensures that our questions get repeated once we are beyond
         //the question bank limit.
         let question = data[this.state.questionCounter % data.length];
-
-        
-
-
-        //assign css classes dynamically to option texts(for font color assignment)
-        let options = question.options.map((option) => {
-            let optionTextClasses = [classes["option"]];
-            if (option.color === "red") {
-                optionTextClasses.push(classes["option--red"]);
-            } else {
-                optionTextClasses.push(classes["option--blue"]);
-            }
-            return <p onClick={() => this.optionClickHandler(question, option)} className={optionTextClasses.join(' ')}>{option.text}</p>;
-        })
-
         return (
             <div className={classes["Container"]}>
-                <QuestionCard question={question} hoverable />
-                <div className={classes["options"]}>
-                    {options}
+                <div>
+                <QuestionCard question={question} hoverable clicked={this.optionClickHandler} />
+
                 </div>
-                {this.props.currentScore}
             </div>
         )
     }

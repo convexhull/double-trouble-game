@@ -1,35 +1,11 @@
-/********** css for question **********/
-
-.question {
-    cursor: pointer;
-}
-
-.question--red {
-    color: red;
-}
-
-
-.question--blue {
-    color: blue;
-}
-
-
-/********** css for options**********/
-
-.options {
+.Container {
+    width: 100%;
     display: flex;
-}   
-
-
-.option {
-    cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
-.option--red {
-    color: red;
-}       
 
 
-.option--blue {
-    color: blue;
-}   
+
+

@@ -1,72 +1,67 @@
 import React from 'react';
-import { connect, ConnectedProps} from 'react-redux';
-
 
 /**
- * This component displays the Introduction illustration (game demo)
  * 
- * # This component is imported into the Introduction Page
-*/
-
+ * Demo question card for intro/rules description purpose. Imported into Introduction component, when user is playing
+ * double trouble game.  
+ * 
+ */
 
 
 
 //import styles
-import classes from './Gameplay.module.css';
+import classes from './IntroIllustration.module.css';
 
-//import utils and helpers
-import * as GameUtils from '../../../shared/utils/doubleTrouble';
+//import images
+import CorrectIcon from '../../../assets/images/introductionPage/correct.svg';
+import WrongIcon from '../../../assets/images/introductionPage/wrong.svg';
 
-
-//import types
-import { Question, Answer } from '../../../shared/types/doubleTrouble';
-
-
-//import actions
-import * as gameActions from '../../../store/game/actionCreators';
-import { RootState } from '../../../store/store';
-
-
-
-
-type State = {
-    questionCounter: number
-}
 
 
 type PropsFromParents = {
 
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        currentScore: state.gameState.current_score
-    }
+type AllProps = PropsFromParents;
+
+
+const IntroIllustration: React.FC<AllProps> = (props) => {
+
+    let questionTextClasses = [classes["text-box"], classes["question"], classes["question--blue"]];
+    let option1TextClasses = [classes["text-box"], classes["option"], classes["option--blue"]];
+    let option2TextClasses = [classes["text-box"], classes["option"], classes["option--red"]];
+    //assign css classes dynamically to option texts(for font color assignment)
+
+    return (
+        <div className={classes["Container"]}>
+            <div className={classes["question-container"]}>
+                <p className={questionTextClasses.join(' ')}>RED</p>
+                <div className={classes["question__tip"]}><div className={classes["long-dash"]}></div>WORD IS IN BLUE COLOR</div>
+            </div>
+            <div className={classes["options"]}>
+                <div className={classes["option-container"]}>
+                    <p className={option1TextClasses.join(' ')}>
+                        RED
+                    <img className={classes["wrong-icon"]} src={WrongIcon} alt="cross icon"/>
+
+                    </p>
+                    <p className={classes["option-tip"]}>
+                        WRONG ANSWER
+                    </p>
+                </div>
+                <div className={classes["option-container"]}>
+                    <p className={option2TextClasses.join(' ')}>
+                        BLUE
+                        <img className={classes["correct-icon"]} src={CorrectIcon} alt="tick icon"/>
+
+                    </p>
+                    <p className={classes["option-tip"]}>
+                        CORRECT ANSWER
+                    </p>
+                </div>
+            </div>
+        </div>
+    )
 }
 
-const mapDispatchToProps = {
-    onIncrementScore: () => gameActions.incrementGameScore()
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type AllProps = PropsFromParents & PropsFromRedux;
-
-class Gameplay extends React.Component<AllProps, State> {
-
-
-    render() {
-
-       
-        return (
-           null
-        )
-    }
-
-}
-
-
-
-export default connector(Gameplay);
+export default IntroIllustration;

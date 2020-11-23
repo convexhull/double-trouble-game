@@ -1,0 +1,28 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2rem;
+    
+}
+
+.game-score {
+    border: 1px solid var(--light-purple);
+    border-radius: 5px;
+    background: #231826 0% 0% no-repeat padding-box;
+    padding: 2rem;
+    display: inline-block;
+    font-size: 2.43rem;
+    color: var(--light-purple);
+    font-weight: 500;
+}
+
+.greet {
+    padding-bottom: 2rem;
+}
+
+.final-word {
+    padding-top: 2rem;
+}

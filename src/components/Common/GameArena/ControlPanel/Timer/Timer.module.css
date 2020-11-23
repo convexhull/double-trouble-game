@@ -1,30 +1,30 @@
 .Container {
     width: 100%;
-    background: linear-gradient(0,rgba(188, 150, 230, 0.15),rgba(188, 150, 230, 0.15));
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
 
 
 
 
 .timer-progressbar-container {
-    margin: 0 auto;
-    /* height: 300px; */
-    width: 5px;
+    margin: 3rem auto 0 auto;
+    width: 16px;
     background-color: maroon;
     position: relative;
     flex-basis: 80%;
+    border-radius: 8px;
 }
 
 .timer-progressbar {
-    width: 5px;
-    background-color: pink;
+    width: 16px;
+    background-color: rgba(188, 150, 230, 1);
     border: 1px solid black;
     position: absolute;
     bottom: 0;
-
+    border-radius: 8px;
 }
 
 
@@ -39,7 +39,6 @@
 
 
 .timer-digital__title {
-    letter-spacing: 2.8px;
     margin-bottom: 0.5rem;
     color: rgba(188, 150, 230, 1);
 }
@@ -48,4 +47,14 @@
 
 .timer-digital__value {
     font-size: 2rem;
+}
+
+/* for background */
+.timer-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: transparent linear-gradient(0deg, rgba(188, 150, 230, 0.6) 0%, rgba(188, 150, 230, 0.2) 100%) 0% 0% no-repeat padding-box;
+    opacity: 0.15;
 }

@@ -1,0 +1,108 @@
+
+
+
+.Container {
+    width: 700px;
+    font-weight: 500;
+}
+
+
+.text-box {
+    --height: 106px; /*variable declaration*/
+    height: var(--height);
+    border-radius: calc(var(--height)/2);
+    border: 1px solid var(--light-purple);
+    width: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 4.2px;
+    font-size: 3rem;
+}
+
+
+/********** css for question **********/
+
+.question-container {
+    position: relative;
+}
+
+
+.question {
+    border: none;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+}
+
+
+.question--red {
+    color: var(--standard-red);
+}
+
+
+.question--blue {
+    color: var(--standard-blue);
+}
+
+
+.question__tip {
+    position: absolute;
+    top: 45px;
+    left: 470px;
+    color: var(--light-purple);
+    letter-spacing: 2.8px;
+}
+
+.long-dash {
+    border: 0.5px solid var(--light-purple);
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    left: -60px;
+}
+
+
+
+
+
+/************** css for options **************/
+
+.options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.option {
+    position: relative;
+}
+
+
+
+.option--red {
+    color: var(--standard-red);
+}
+
+
+.option--blue {
+    color: var(--standard-blue);
+}
+
+
+.option-tip {
+    padding-top: 2rem;
+    color: var(--light-purple);
+}
+
+
+.wrong-icon {
+    position: absolute;
+    top: 20px;
+    left: -30px;
+}
+
+.correct-icon {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+}

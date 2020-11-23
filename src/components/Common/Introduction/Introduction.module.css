@@ -1,9 +1,30 @@
 .Container {
     display: flex;
     flex-direction: column;
+    width: 700px;
+    margin: 0 auto;
 }
 
 
 .title {
     text-align: center;
+    margin: 5rem 0 2rem 0;
 }
+
+
+.intro-text {
+    width: 100%;
+    white-space: pre-line;
+    margin-bottom: 2rem;
+}
+
+
+.illustration {
+    margin: 0 auto;
+}
+
+.proceed-btn {
+    margin-top: 5rem;
+}
+
+

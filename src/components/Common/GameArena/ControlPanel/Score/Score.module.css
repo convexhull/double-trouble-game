@@ -1,32 +1,33 @@
 .Container {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.score-canvas {
     background: transparent linear-gradient(0deg, rgba(188, 150, 230, 0.6) 0%, rgba(188, 150, 230, 0.2) 100%) 0% 0% no-repeat padding-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    opacity: 0.15;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
 }
-
-
-.score-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .score-card__title {
     color: var(--light-purple);
 }
+  
 
 
 
-
-.score-card {
+.score-card__score {
     color: white;
+    font-size: 2rem;
 }
-
+  
 
 
 

@@ -23,7 +23,7 @@ import { RootState } from '../../../../../store/store';
 
 
 type State = {
-    
+    progressBarFullHeight: number
 }
 
 
@@ -49,19 +49,40 @@ type AllProps = PropsFromParents & PropsFromRedux;
 
 
 class Timer extends React.Component<AllProps, State> {
+    progressBarRef: React.RefObject<HTMLInputElement>;
+    constructor(props: AllProps){
+        super(props);
+        this.progressBarRef = React.createRef();
+        this.state = {
+            progressBarFullHeight: 0
+        }
+    }
+
+    componentDidMount() {
+        //For getting the maximum height of countdown timer progress bar. Used for calculating remaining height. 
+        if(this.progressBarRef.current){
+            let height = this.progressBarRef.current.clientHeight;
+            if(height !== this.state.progressBarFullHeight){
+                this.setState({
+                    progressBarFullHeight: height
+                })
+            }
+        }
+    }
 
     render() {
-        let max_height = 300;
-        let remaining_height = (max_height / this.props.baseTime) * this.props.timeRemaining;
+        let remaining_height = (this.state.progressBarFullHeight / this.props.baseTime) * this.props.timeRemaining;
         return (
             <div className={classes["Container"]}>
-                <div className={classes["timer-progressbar-container"]}>
-                    <div className={classes["timer-progressbar"]} style={{ height: remaining_height }}>
+                <div ref={this.progressBarRef} className={classes["timer-progressbar-container"]}>
+                    <div  className={classes["timer-progressbar"]} style={{ height: remaining_height }}>
                     </div>
                 </div>
                 <div className={classes["timer-digital"]}>
                     <p className={classes["timer-digital__title"]}>TIME</p>
                     <p className={classes["timer-digital__value"]}>{this.props.timeRemaining}</p>
+                </div>
+                <div className={classes["timer-canvas"]}>
                 </div>
             </div>
         )

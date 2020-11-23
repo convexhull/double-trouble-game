@@ -1,7 +1,7 @@
 //import npm modules
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps, Route } from 'react-router-dom';
 
 
 /**
@@ -26,7 +26,9 @@ import { RootState } from '../../../store/store';
 //import styles
 import classes from './Introduction.module.css';
 
-
+//import Components
+import DoubleTroubleIllustration from '../../DoubleTrouble/IntroIllustration/IntroIllustration';
+import Button from '../UIElements/Button/Button';
 
 
 
@@ -38,13 +40,11 @@ type State = {
 
 
 type PropsFromParent = {
-    name: string;
-    age: number;
+
 }
 
 const mapStateToProps = (state: RootState) => {
     return {
-        name: state.gameState.name,
         introText: state.gameState.intro_text
     }
 
@@ -74,12 +74,22 @@ class IntroductionPage extends React.Component<AllProps, State> {
     }
 
     render() {
+        let introText = this.props.introText;
+        //replace periods by newlines for proper formatting.
+        let formattedIntroText = introText.replace(/\./g, '.\n');
         return (
             <div className={classes["Container"]}>
                 <h1 className={classes["title"]}>Instructions</h1>
-                <p>{this.props.introText}</p>
+                <p className={classes["intro-text"]}>{formattedIntroText}</p>
                 {/*rev*/}
-                <Link to={`/double-trouble/play`}>I understand</Link>
+                <div className={classes["illustration"]}>
+                    <Route path="/double-trouble/intro" component={DoubleTroubleIllustration} />
+                </div>
+                <div className={classes["proceed-btn"]}>
+                    <Link to="./play">
+                        <Button type="cta" clicked={() => { }}>I understand</Button>
+                    </Link>
+                </div>
             </div>
         )
     }

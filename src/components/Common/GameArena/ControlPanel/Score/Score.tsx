@@ -36,6 +36,8 @@ const Score: React.FC<AllProps> = (props: AllProps) => {
                 <p className={classes["score-card__title"]}>SCORE</p>
                 <p className={classes["score-card__score"]}>{props.currentScore}</p>
             </div>
+            <div className={classes["score-canvas"]}>
+            </div>
         </div>
     )
 }

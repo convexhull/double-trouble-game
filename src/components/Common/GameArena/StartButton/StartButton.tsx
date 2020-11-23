@@ -66,7 +66,7 @@ class StartButton extends React.Component<AllProps, State> {
                 //clean up the setInterval(for the local timer) 
                 clearInterval(this.setIntervalReference);
                 //start the central redux game timer.
-                this.props.onStartGameTimer(50);
+                this.props.onStartGameTimer(150);
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {

@@ -1,20 +1,34 @@
-.Container {
-    --height: 106px;
 
+
+
+.Container {
+    width: 600px;
+    font-weight: 500;
+    font-size: 3rem;
 }
 
 
 .text-box {
-    font-size: 2rem;
-    border: 1px solid var(--light-purple);
-    width: 205px;
+    --height: 106px; /*variable declaration*/
     height: var(--height);
     border-radius: calc(var(--height)/2);
+    border: 1px solid var(--light-purple);
+    width: 205px;
     display: flex;
     justify-content: center;
     align-items: center;
+    letter-spacing: 4.2px;
 }
 
+
+/********** css for question **********/
+
+
+.question {
+    border: none;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+}
 
 .question--red {
     color: var(--standard-red);
@@ -27,12 +41,18 @@
 }
 
 
+/************** css for options **************/
+
 .options {
     display: flex;
+    justify-content: space-evenly;
 }
 
 
 
+.option:hover {
+    cursor: pointer;
+}
 
 
 .option--red {
