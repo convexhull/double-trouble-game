@@ -12,12 +12,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //import reducers
 import gameReducer from './game/reducer';
 import globalReducer from './global/reducer';
+import loadingStateReducer from './loadingState/reducer';
 
 
 
 const rootReducer = combineReducers({
     gameState: gameReducer,
-    globalState: globalReducer
+    globalState: globalReducer,
+    loadingState: loadingStateReducer
 });
 
 

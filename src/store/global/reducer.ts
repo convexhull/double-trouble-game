@@ -2,10 +2,7 @@ import { Reducer } from 'redux';
 
 import {
     GlobalState,
-    TimerActions,
-    TIMER_START,
-    TIMER_RESET,
-    TIMER_TICK
+    GlobalStateActions,
 } from "./types";
 
 const initState: GlobalState = {
@@ -13,13 +10,17 @@ const initState: GlobalState = {
         timeRemaining: 0,
         running: false,
         baseTime: 0
+    },
+    current_user: {
+        id: '',
+        name: '',
+        email: ''
     }
 };
 
-const reducer: Reducer<GlobalState, TimerActions> = (state = initState, action) => {
-
+const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, action) => {
     switch (action.type) {
-        case TIMER_TICK:
+        case "TIMER_TICK":
             return {
                 ...state,
                 timer: {
@@ -27,7 +28,7 @@ const reducer: Reducer<GlobalState, TimerActions> = (state = initState, action) 
                     timeRemaining: state.timer.timeRemaining - 1,
                 },
             };
-        case TIMER_RESET:
+        case "TIMER_RESET":
             return {
                 ...state,
                 timer: {
@@ -36,17 +37,31 @@ const reducer: Reducer<GlobalState, TimerActions> = (state = initState, action) 
                     timeRemaining: 0
                 }
             };
-        case TIMER_START:
+        case "TIMER_START":
             /*rev*/
             return {
                 ...state,
                 timer: {
                     ...state.timer,
                     running: true,
-                    timeRemaining: ("payload" in action ? action.payload.baseTime : 0),
-                    baseTime: ("payload" in action ? action.payload.baseTime : 0)
+                    timeRemaining: action.payload.baseTime,
+                    baseTime: action.payload.baseTime
                 }
             };
+        case "GET_USER_START":
+            return {
+                ...state
+            }
+        case "GET_USER_SUCCESS":
+            return {
+                ...state,
+                current_user: {
+                    ...state.current_user,
+                    name: action.payload.name,
+                    id: action.payload.id,
+                    email: action.payload.email
+                }
+            }
         default:
             return state;
     }

@@ -1,16 +1,16 @@
 import {
-    TIMER_START,
-    TIMER_TICK,
     TimerStartPayload,
     TimerStartAction,
     TimerTickAction,
-    TIMER_RESET,
-    TimerResetAction
+    TimerResetAction,
+    UserActions,
+    GetUserSuccessPayload
 } from './types';
 
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 import { RootState } from '../store';
+import Axios from '../../axios/axios';
 
 /**
  * This central redux store timer logic is for the game timer. And can be used for any game.
@@ -18,7 +18,7 @@ import { RootState } from '../store';
 
 const timerStart = (payload: TimerStartPayload): TimerStartAction => {
     return {
-        type: TIMER_START,
+        type: "TIMER_START",
         payload: payload
     }
 }
@@ -26,14 +26,13 @@ const timerStart = (payload: TimerStartPayload): TimerStartAction => {
 
 const timerTick = (): TimerTickAction => {
     return {
-        type: TIMER_TICK
+        type: "TIMER_TICK"
     }
 }
 
-
 export const timerReset = (): TimerResetAction => {
     return {
-        type: TIMER_RESET
+        type: "TIMER_RESET"
     }
 }
 
@@ -59,4 +58,36 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
     })
 }
 
+
+const getUserStart = (): UserActions => {
+    return {
+        type: "GET_USER_START"
+    }
+}
+
+
+
+const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
+    return {
+        type: "GET_USER_SUCCESS",
+        payload: {
+            name: payload.name,
+            id: payload.id,
+            email: payload.email
+        }
+    }
+}
+
+export const asyncGetUserStart = (): ThunkAction<void, RootState, unknown, Action<string> > => {
+    return async (dispatch) => {
+        dispatch(getUserStart());
+        try {
+            let apiResponse = await Axios.get('/user');
+            let apiResponseData = apiResponse.data;
+            dispatch(getUserSuccess(apiResponseData));
+        } catch(e) {
+            console.log(e);
+        }
+    }
+}
 

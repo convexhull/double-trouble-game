@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect, ConnectedProps} from 'react-redux';
 
 
 //import files
@@ -14,6 +15,11 @@ import * as GameUtils from '../../../../shared/utils/doubleTrouble';
 //import types
 import { Question, Answer } from '../../../../shared/types/doubleTrouble';
 
+
+//import actions
+import * as gameActions from '../../../../store/game/actionCreators';
+import { RootState } from '../../../../store/store';
+
 /**
  * This Gameplay component consists of the actual game. This component is imported into the game arena.
  * 
@@ -25,32 +31,37 @@ import { Question, Answer } from '../../../../shared/types/doubleTrouble';
 
 
 
+type State = {
+    questionCounter: number
+}
+
 
 type PropsFromParents = {
 
 }
 
-
-
-type PropsFromDispatch = {
-
+const mapStateToProps = (state: RootState) => {
+    return {
+        currentScore: state.gameState.current_score
+    }
 }
 
-
-type State = {
-    questionCounter: number,
-    currentScore: number
+const mapDispatchToProps = {
+    onIncrementScore: () => gameActions.incrementGameScore()
 }
 
-type AllProps = PropsFromParents & PropsFromDispatch;
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type AllProps = PropsFromParents & PropsFromRedux;
 
 class Gameplay extends React.Component<AllProps, State> {
 
     constructor(props: AllProps){
         super(props);
         this.state = {
-            questionCounter: 0,
-            currentScore: 0
+            questionCounter: 0
         }
     }
 
@@ -59,14 +70,9 @@ class Gameplay extends React.Component<AllProps, State> {
 
         //score is 1 if answer is correct, false otherwise
         let score = GameUtils.checkAnswer(question, answer) ? 1 : 0;
-        
-        this.setState((state) => {
-            return {
-                questionCounter: state.questionCounter + 1,
-                currentScore: state.currentScore + score
-            }
-        });
-
+        if(score === 1){
+            this.props.onIncrementScore();
+        }
     }
 
     render() {
@@ -100,7 +106,7 @@ class Gameplay extends React.Component<AllProps, State> {
                 <div className={classes["options"]}>
                     {options}
                 </div>
-                {this.state.currentScore}
+                {this.props.currentScore}
             </div>
         )
     }
@@ -109,4 +115,4 @@ class Gameplay extends React.Component<AllProps, State> {
 
 
 
-export default Gameplay;
+export default connector(Gameplay);

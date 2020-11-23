@@ -3,6 +3,19 @@ import { connect, ConnectedProps } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
 
+
+
+/**
+ * This component displays the Game Arena(or game screen). It consists of other components like StartButton, Control Panel and the 
+ * GamePlay component itself. 
+ * 
+ * # Control Panel (consisting of time, score and volume control) is always displayed. 
+ * # Startbutton and GamePlay component are displayed conditionally. 
+ * # If the game timer(redux) is not running, that means we ain't playing game. So StartButton component will be displayed. 
+ * # If the game timer(redux) is running, it means the game is being played, so we will only see the GamePlay component. 
+ */
+
+
 //import css styles
 import classes from './GameArena.module.css';
 
@@ -51,7 +64,7 @@ class GameArena extends React.Component<AllProps, State> {
     componentDidUpdate() {
         //if the timer is running and the time remaining becomes zero, redirect the user to the result page and reset the timer.
         if(this.props.timeRemaining <= 0 && this.props.timerRunning ){
-            this.props.history.push('/result');
+            this.props.history.push(`./result`);
             this.props.onResetTimer();
         }
     }
@@ -60,8 +73,7 @@ class GameArena extends React.Component<AllProps, State> {
         return (
             <div className={classes["Container"]}>
                 GAMEE!!!!
-                <StartButton />
-                <GamePlay />
+                {this.props.timerRunning ? <GamePlay /> : <StartButton />}
                 <div className={classes["timer"]}>
                     <Timer />
                 </div>
@@ -69,8 +81,6 @@ class GameArena extends React.Component<AllProps, State> {
         )
     }
 }
-
-
 
 
 export default connector(GameArena);
