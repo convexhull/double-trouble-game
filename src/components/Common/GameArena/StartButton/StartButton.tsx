@@ -15,6 +15,10 @@ import classes from './StartButton.module.css';
 //import actions
 import * as globalActions from '../../../../store/global/actionCreators';
 
+//import images
+import RedLinesSvg from '../../../../assets/images/start-game-btn/red-lines.svg';
+import GreenLinesSvg from '../../../../assets/images/start-game-btn/green-lines.svg';
+
 
 
 const mapDispatchToProps = {
@@ -89,7 +93,10 @@ class StartButton extends React.Component<AllProps, State> {
 
         return (
             <div className={classes["Container"]}>
-                {startButton}
+                <div className={classes["start-btn-container"]}>
+                    <img src={RedLinesSvg} alt="outward rays" />
+                    {startButton}
+                </div>
                 <p className={classes["start-game-text"]}>Start the game</p>
                 <div className={classes["intro-link"]}>
                     <Link  to="./intro">Instructions</Link>
