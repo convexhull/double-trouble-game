@@ -48,10 +48,6 @@ const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, a
                     baseTime: action.payload.baseTime
                 }
             };
-        case "GET_USER_START":
-            return {
-                ...state
-            }
         case "GET_USER_SUCCESS":
             return {
                 ...state,

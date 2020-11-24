@@ -25,7 +25,7 @@ describe('Unit Test: <Sound />', () => {
         const imageNode = queryByAltText("sound-on button");
         expect(imageNode).toBeInTheDocument();
         if(!imageNode){
-            throw new Error("image node doesn't exist");
+            throw new Error("Image node doesn't exist");
         }
         userEvent.click(imageNode);
         expect(queryByAltText("sound-off button")).toBeInTheDocument();

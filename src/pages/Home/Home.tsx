@@ -47,7 +47,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type AllProps = PropsFromParents & PropsFromRedux;
 
-class Home extends React.Component<AllProps, State> {
+export class Home extends React.Component<AllProps, State> {
 
     componentDidMount() {
         this.props.onLoadAllGames();
@@ -59,12 +59,12 @@ class Home extends React.Component<AllProps, State> {
                 case "Double Trouble":
                     return (
                         <li>
-                            <Link to={`/double-trouble/intro`}>{el.name}</Link>
+                            <Link key={el.id} to={`/double-trouble/intro`}>{el.name}</Link>
                         </li>
                     )
                 default:
                     return (
-                        <li></li>
+                        <li key={el.id}></li>
                     )
             }
         })
@@ -74,7 +74,7 @@ class Home extends React.Component<AllProps, State> {
                 <React.Fragment>
                     <h1 className={classes["welcome"]}>WELCOME</h1>
                     <p className={classes["available-games"]}>Available game(s):</p>
-                    <ul>
+                    <ul className={classes["game-list"]}>
                         {availableGames}
                     </ul>
                 </React.Fragment>

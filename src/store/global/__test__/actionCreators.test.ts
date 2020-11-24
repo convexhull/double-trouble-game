@@ -10,6 +10,8 @@ import {
 import configureMockStore from "redux-mock-store";
 import Thunk from 'redux-thunk';
 
+
+//Mock our axios instance for mocking api calls
 jest.mock('../../../axios/axios');
 
 describe("globalState redux Actions", () => {
@@ -92,6 +94,8 @@ describe("globalState redux Actions", () => {
 
     it("should create TIMER_TICK action every second", async () => {
         //essentially, checking if 3 ticks are sent in 3 seconds.
+
+        //for mocking setInterval
         jest.useFakeTimers();
         const middlewares = [Thunk];
         const mockStore = configureMockStore(middlewares);
@@ -108,6 +112,7 @@ describe("globalState redux Actions", () => {
         jest.advanceTimersByTime(1000);
         jest.advanceTimersByTime(1000);
         expect(store.getActions()).toEqual(expectedActions);
+        jest.clearAllTimers();
     })
 
 })

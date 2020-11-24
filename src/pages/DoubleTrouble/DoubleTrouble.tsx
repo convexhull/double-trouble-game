@@ -7,16 +7,17 @@ import GameArena from '../../components/DoubleTrouble/GameArena/GameArena';
 import GameResult from '../../components/Common/GameResult/GameResult';
 
 
-interface Props extends RouteComponentProps {
-    name: string;
-    age: number
+type PropsFromParents = {
+
 }
+
+type AllProps =  PropsFromParents & RouteComponentProps;
 
 type State = {
 
 }
 
-class DoubleTrouble extends React.Component<Props, State> {
+class DoubleTrouble extends React.Component<AllProps, State> {
     
     state: State = {
     
@@ -31,6 +32,7 @@ class DoubleTrouble extends React.Component<Props, State> {
             </div>
         )
     }
+    
 }
 
 

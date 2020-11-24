@@ -50,7 +50,7 @@ type State = {
 
 }
 
-class StartButton extends React.Component<AllProps, State> {
+export class StartButton extends React.Component<AllProps, State> {
     /**
      * setIntervalReference saves the ref to the setInterval, for cleanup
      */
