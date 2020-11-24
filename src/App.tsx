@@ -22,12 +22,17 @@ type PropsFromParent = {
 
 }
 
+const mapStateToProps = (state: RootState) => {
+  return {
+    availableGames: state.gameState.availableGames
+  }
+}
 
 const mapDispatchToProps = {
   onFetchUserInfo: () => globalActions.asyncGetUserStart()
 }
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 
 type PropsFromRedux = ConnectedProps<typeof connector>; 
@@ -42,7 +47,6 @@ class App extends React.Component<AllProps, State> {
   }
 
   render(){
-
     return (
       <div className="App">
         <Switch>

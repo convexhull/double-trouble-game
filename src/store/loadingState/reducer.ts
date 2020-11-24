@@ -3,9 +3,9 @@ import { Reducer } from "redux";
 //import types
 import { AllActions, LoadingState } from "./types";
 
-const initState = {
-    GET_TODOS: false,
+const initState: LoadingState = {
     UPDATE_USER_SCORE: false,
+    FETCH_ALL_GAMES: false,
 };
 
 const loadingReducer: Reducer<LoadingState, AllActions> = (

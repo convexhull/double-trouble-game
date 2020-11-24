@@ -28,7 +28,8 @@ type State = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        availableGames: state.gameState.availableGames
+        availableGames: state.gameState.availableGames,
+        loading: state.loadingState.FETCH_ALL_GAMES
     }
 }
 
@@ -63,23 +64,28 @@ class Home extends React.Component<AllProps, State> {
                     )
                 default:
                     return (
-                        <li>
-                            <Link to={`/double-trouble/intro`}>{el.name}</Link>
-                        </li>
+                        <li></li>
                     )
             }
         })
+        let jsxToRender = null;
+        if (!this.props.loading) {
+            jsxToRender = (
+                <React.Fragment>
+                    <h1 className={classes["welcome"]}>WELCOME</h1>
+                    <p className={classes["available-games"]}>Available game(s):</p>
+                    <ul>
+                        {availableGames}
+                    </ul>
+                </React.Fragment>
+            )
+        }
         return (
             <div className={classes["Container"]}>
-                <h1 className={classes["welcome"]}>WELCOME</h1>
-                <p className={classes[""]}>Available game(s):</p>
-                <ul>
-                    {availableGames}
-                </ul>
+                {jsxToRender}
             </div>
-        )
+        );
     }
-
 }
 
 
