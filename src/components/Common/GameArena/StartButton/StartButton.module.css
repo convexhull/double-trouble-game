@@ -7,18 +7,15 @@
 }
 
 .start-btn {
-    background: url('../../../../assets/images/start-game-btn/default.svg');
     height: 124px;
     width: 124px;
     margin-top: 10rem;
     z-index: 100;
     position: relative;
-    
 }
 
 
 .start-btn:hover {
-    background: url('../../../../assets/images/start-game-btn/hover.svg');
     cursor: pointer;
 }
 
@@ -26,18 +23,6 @@
     color: blue;
 }
 
-.start-btn-container {
-    position: relative;
-    border: 15px solid var(--primary-background);
-    z-index: 11;
-}
-
-.start-btn-container img {
-    position: absolute;
-    top: 102.5px;
-    left: -38.5px;
-    z-index: 10;
-}
 
 .start-game-text {
     color: var(--lime-green);
@@ -58,13 +43,70 @@
 
 /********** count-down display*************/
 
+
+
+.countdown-container {
+    position: relative;
+}
+
+
+.red-lines {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.red-lines--visible {
+    opacity: 1;
+}
+
+.green-lines {
+    position: absolute;
+    top: -85px;
+    left: -85px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .1s;
+}
+
+.green-lines--visible {
+    opacity: 1;
+}
+
+
+
 .countdown-display {
-    border: 1px solid black;
+    border: 1px solid var(--light-purple);
     border-radius: 50%;
     width: 124px;
     height: 124px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10rem;
+    z-index: 10;
+    position: relative;
+    background-color: var(--primary-background);
 }
+
+.countdown-display:before {
+    content: " ";
+    position: absolute;
+    z-index: 100;
+    top: -16px;
+    left: -16px;
+    right: -16px;
+    bottom: -16px;
+    border-radius: 50%;
+    border: 15px solid var(--primary-background);
+  }
+
+.countdown-display span {
+    font-size: 3rem;
+    color: var(--light-purple);
+    font-weight: 500;
+}
+
+

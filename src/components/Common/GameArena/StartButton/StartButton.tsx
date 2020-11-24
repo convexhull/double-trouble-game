@@ -18,6 +18,7 @@ import * as globalActions from '../../../../store/global/actionCreators';
 //import images
 import RedLinesSvg from '../../../../assets/images/start-game-btn/red-lines.svg';
 import GreenLinesSvg from '../../../../assets/images/start-game-btn/green-lines.svg';
+import StartBtnSvg from '../../../../assets/images/start-game-btn/default.svg';
 
 //import types
 import { RootState } from '../../../../store/store';
@@ -46,7 +47,7 @@ type AllProps = PropsFromParent & PropsFromRedux;
 
 type State = {
     timerRunning: boolean,
-    timeRemaining: number
+    timeRemaining: number,
 
 }
 
@@ -58,8 +59,12 @@ export class StartButton extends React.Component<AllProps, State> {
 
 
     state = {
-        timeRemaining: 3,
-        timerRunning: false
+        timeRemaining: 8,
+        timerRunning: false,
+    }
+
+    mouseEnterHandler = () => {
+
     }
 
     clickHandler = () => {
@@ -71,6 +76,7 @@ export class StartButton extends React.Component<AllProps, State> {
 
         this.setIntervalReference = setInterval(() => {
             //This setInterval callback updates timeRemaining in the local timer. 
+            //We need only 4 second timer, but timeRemaining is 8 initially. So we call setTimout every half a second( 500ms). 
 
             if (this.state.timeRemaining === 1) {
                 //work to be done in last second
@@ -80,7 +86,6 @@ export class StartButton extends React.Component<AllProps, State> {
 
                 //start the central redux game timer
                 this.props.onStartGameTimer(this.props.allowedTime);
-                alert('change agove before commit');
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {
@@ -89,27 +94,78 @@ export class StartButton extends React.Component<AllProps, State> {
                     timerRunning: (state.timeRemaining === 1 ? false : true)
                 }
             })
-        }, 1000);
+        }, 500);
     }
 
     render() {
 
-        //if timer is running display play button else display the countdown timer
-        let startButton = (this.state.timerRunning ?
-            <div className={classes["countdown-display"]}><span>{this.state.timeRemaining}</span></div>
-            :
-            <div className={classes["start-btn"]} onClick={this.clickHandler}></div>);
 
+        /**
+         * Hacky way to simulate animation using CSS transition. Better modify this to use a react animation lib like react-spring etc. 
+         * 
+         * # We are simply using JS to inject css classes. 
+         * # timeRemaining decrease from 8 to 0 -> 8, 7, 6, 5.... 
+         * # But we need only 4 sec timer. So we decrement time remaining every half second. 
+         * # So every alternate half second we add/remove visible class for red-lines. So as to make use of  CSS transition property. 
+         * # Check CSS for red-lines to get better idea
+         * # Finally when time remaining is < 2, i.e we are in last second, then we make green lines visible by adding green-lines--visible class. 
+         */
+        let greenLinesClasses = [classes["green-lines"]];
+        let redLinesClasses = [classes["red-lines"]];
+        if(this.state.timeRemaining < 2) {
+            greenLinesClasses.push(classes["green-lines--visible"]);
+            redLinesClasses.filter( (el) => el !== "red-lines--visible");
+        } 
+        else {
+            if(this.state.timeRemaining % 2){
+                redLinesClasses.push(classes["red-lines--visible"]);
+            } else {
+                redLinesClasses.filter( (el) => el !== "red-lines--visible");
+            }
+        }
+
+        
+
+        let countdownDisplayBtn = null;
+        if (this.state.timerRunning) {
+            countdownDisplayBtn = (
+                <React.Fragment>
+                    <div className={classes["countdown-container"]}>
+                        <div className={classes["countdown-display"]}><span>{this.state.timeRemaining >= 3 ? Math.floor((this.state.timeRemaining-1)/2) : "Go!"}</span></div>
+                        <img src={GreenLinesSvg} className={greenLinesClasses.join(' ')} alt="green lines" />
+                        <img src={RedLinesSvg} className={redLinesClasses.join(' ')} alt="red lines" />
+                    </div>
+                </React.Fragment>
+            );
+        }
+        let startBtn = null;
+        if (!this.state.timerRunning) {
+            startBtn = (
+                <div className={classes["start-btn"]} onClick={this.clickHandler}>
+                    <img src={StartBtnSvg} alt="" />
+                </div>
+            )
+        }
+
+        let instructions = null;
+        if (!this.state.timerRunning) {
+            instructions = (
+                <React.Fragment>
+                    <p className={classes["start-game-text"]}>Start the game</p>
+                    <div className={classes["intro-link"]}>
+                        <Link to="./intro">Instructions</Link>
+                    </div>
+                </React.Fragment>
+            )
+        }
+        //if timer is running display play button else display the countdown timer
         return (
             <div className={classes["Container"]}>
                 <div className={classes["start-btn-container"]}>
-                    <img src={RedLinesSvg} alt="outward rays" />
-                    {startButton}
+                    {countdownDisplayBtn}
+                    {startBtn}
                 </div>
-                <p className={classes["start-game-text"]}>Start the game</p>
-                <div className={classes["intro-link"]}>
-                    <Link  to="./intro">Instructions</Link>
-                </div>
+                {instructions}
             </div>
         )
     }
