@@ -16,7 +16,7 @@ import Axios from '../../axios/axios';
  * This central redux store timer logic is for the game timer. And can be used for any game.
  */
 
-const timerStart = (payload: TimerStartPayload): TimerStartAction => {
+export const timerStart = (payload: TimerStartPayload): TimerStartAction => {
     return {
         type: "TIMER_START",
         payload: payload
@@ -24,7 +24,7 @@ const timerStart = (payload: TimerStartPayload): TimerStartAction => {
 }
 
 
-const timerTick = (): TimerTickAction => {
+export const timerTick = (): TimerTickAction => {
     return {
         type: "TIMER_TICK"
     }
@@ -59,7 +59,7 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
 }
 
 
-const getUserStart = (): UserActions => {
+export const getUserStart = (): UserActions => {
     return {
         type: "GET_USER_START"
     }
@@ -67,7 +67,7 @@ const getUserStart = (): UserActions => {
 
 
 
-const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
+export const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
     return {
         type: "GET_USER_SUCCESS",
         payload: {

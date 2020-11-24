@@ -16,7 +16,7 @@ import loadingStateReducer from './loadingState/reducer';
 
 
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     gameState: gameReducer,
     globalState: globalReducer,
     loadingState: loadingStateReducer
@@ -28,5 +28,4 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(Redux
 
 
 export type RootState = ReturnType<typeof rootReducer>;
-
 export default store;

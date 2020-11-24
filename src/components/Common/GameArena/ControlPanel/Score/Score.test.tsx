@@ -5,7 +5,6 @@ import { Score } from './Score';
 
 
 
-
 describe('Unit Test: <Score />', () => {
     const testData = {
         currentScore: 10

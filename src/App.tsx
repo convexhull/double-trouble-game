@@ -40,7 +40,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type AllProps = PropsFromParent & PropsFromRedux;
 
-class App extends React.Component<AllProps, State> {
+export class App extends React.Component<AllProps, State> {
 
   componentDidMount() {
     this.props.onFetchUserInfo();

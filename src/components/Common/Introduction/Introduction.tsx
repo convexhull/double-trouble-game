@@ -63,7 +63,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type AllProps = PropsFromParent & RouteComponentProps & PropsFromRedux;
 
-class IntroductionPage extends React.Component<AllProps, State> {
+export class IntroductionPage extends React.Component<AllProps, State> {
 
     componentDidMount() {
         this.props.onLoad();
@@ -87,8 +87,9 @@ class IntroductionPage extends React.Component<AllProps, State> {
                     <div className={classes["illustration"]}>
                         <Route path="/double-trouble/intro" component={DoubleTroubleIllustration} />
                     </div>
+                    {/** similarly illustrations of other games can be added using Routes */}
                     <div className={classes["proceed-btn"]}>
-                        <Link to="./play">
+                        <Link data-testid="link-to-play" to="./play">
                             <Button type="cta" clicked={() => { }}>I understand</Button>
                         </Link>
                     </div>
