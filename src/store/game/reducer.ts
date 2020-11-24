@@ -24,21 +24,26 @@ const reducer: Reducer<GameState, AllActions> = (state = initState, action) => {
         case "FETCH_GAME_INFO_SUCCESS":
             return {
                 ...state,
-                ...action.payload,
-            };
-        case "FETCH_GAME_INFO_START":
-            return {
-                ...state,
+                currentGameInfo: {
+                    ...state.currentGameInfo,
+                    ...action.payload
+                }
             };
         case "INCREMENT_GAME_SCORE":
             return {
                 ...state,
-                current_score: state.currentGameStats.current_score + 1
+                currentGameStats: {
+                    ...state.currentGameStats,
+                    current_score: state.currentGameStats.current_score + 1
+                }
             };
         case "UPDATE_GAME_SCORE_SUCCESS":
             return {
                 ...state,
-                updatedScore: action.payload.score,
+                currentGameStats: {
+                    ...state.currentGameStats,
+                    updatedScore: action.payload.score
+                }
             };
         case "FETCH_ALL_GAMES_SUCCESS":
             return {

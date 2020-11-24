@@ -31,7 +31,8 @@ type PropsFromParents = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        updatedScore: state.gameState.currentGameStats.updatedScore
+        updatedScore: state.gameState.currentGameStats.updatedScore,
+        loading: state.loadingState.UPDATE_GAME_SCORE
     }
 }
 
@@ -56,19 +57,27 @@ class GameResult extends React.Component<AllProps, State> {
     }
 
     render() {
+        let jsxToRender = null;
+        if (!this.props.loading) {
+            jsxToRender = (
+                <React.Fragment>
+                    <p className={classes["greet"]}>
+                        Thank you!
+                </p>
+                    <div className={classes["game-score"]}>
+                        <span>
+                            Your Score is {this.props.updatedScore}
+                        </span>
+                    </div>
+                    <p className={classes["final-word"]}>
+                        We will reach you as soon as we carefully review your interview.
+                </p>
+                </React.Fragment>
+            )
+        }
         return (
             <div className={classes["Container"]}>
-                <p className={classes["greet"]}>
-                    Thank you!
-                </p>
-                <div className={classes["game-score"]}>
-                    <span>
-                        Your Score is {this.props.updatedScore}
-                    </span>
-                </div>
-                <p className={classes["final-word"]}>
-                    We will reach you as soon as we carefully review your interview.
-                </p>
+                {jsxToRender}
             </div>
         )
     }

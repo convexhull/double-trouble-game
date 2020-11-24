@@ -4,8 +4,9 @@ import { Reducer } from "redux";
 import { AllActions, LoadingState } from "./types";
 
 const initState: LoadingState = {
-    UPDATE_USER_SCORE: false,
+    UPDATE_GAME_SCORE: false,
     FETCH_ALL_GAMES: false,
+    FETCH_GAME_INFO: false
 };
 
 const loadingReducer: Reducer<LoadingState, AllActions> = (
@@ -24,8 +25,8 @@ const loadingReducer: Reducer<LoadingState, AllActions> = (
     return {
         ...state,
         // Store whether a request is happening at the moment or not
-        // e.g. will be true when receiving GET_GAME_INFO_START
-        //      and false when receiving GET_GAME_INFO_SUCCESS / GET_GAME_INFO_FAILURE
+        // e.g. will be true when receiving FETCH_GAME_INFO_START
+        //      and false when receiving FETCH_GAME_INFO_SUCCESS / FETCH_GAME_INFO_FAILURE
         [requestName]: requestState === "START",
     };
 };

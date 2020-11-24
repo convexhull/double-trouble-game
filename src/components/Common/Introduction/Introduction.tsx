@@ -45,9 +45,9 @@ type PropsFromParent = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        introText: state.gameState.currentGameInfo.intro_text
+        introText: state.gameState.currentGameInfo.intro_text,
+        loading: state.loadingState.FETCH_GAME_INFO
     }
-
 }
 
 
@@ -72,26 +72,34 @@ class IntroductionPage extends React.Component<AllProps, State> {
     state: State = {
 
     }
-    
+
     render() {
         let introText = this.props.introText;
         //replace periods by newlines for proper formatting.
         let formattedIntroText = introText.replace(/\./g, '.\n');
+
+        let jsxToRender = null;
+        if (!this.props.loading) {
+            jsxToRender = (
+                <React.Fragment>
+                    <h1 className={classes["title"]}>Instructions</h1>
+                    <p className={classes["intro-text"]}>{formattedIntroText}</p>
+                    <div className={classes["illustration"]}>
+                        <Route path="/double-trouble/intro" component={DoubleTroubleIllustration} />
+                    </div>
+                    <div className={classes["proceed-btn"]}>
+                        <Link to="./play">
+                            <Button type="cta" clicked={() => { }}>I understand</Button>
+                        </Link>
+                    </div>
+                </React.Fragment>
+            )
+        }
         return (
             <div className={classes["Container"]}>
-                <h1 className={classes["title"]}>Instructions</h1>
-                <p className={classes["intro-text"]}>{formattedIntroText}</p>
-                {/*rev*/}
-                <div className={classes["illustration"]}>
-                    <Route path="/double-trouble/intro" component={DoubleTroubleIllustration} />
-                </div>
-                <div className={classes["proceed-btn"]}>
-                    <Link to="./play">
-                        <Button type="cta" clicked={() => { }}>I understand</Button>
-                    </Link>
-                </div>
+                {jsxToRender}
             </div>
-        )
+        );
     }
 }
 

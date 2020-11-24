@@ -19,13 +19,21 @@ import * as globalActions from '../../../../store/global/actionCreators';
 import RedLinesSvg from '../../../../assets/images/start-game-btn/red-lines.svg';
 import GreenLinesSvg from '../../../../assets/images/start-game-btn/green-lines.svg';
 
+//import types
+import { RootState } from '../../../../store/store';
 
+
+const mapStateToProps = (state: RootState) => {
+    return {
+        allowedTime: state.gameState.currentGameInfo.time
+    }
+}
 
 const mapDispatchToProps = {
     onStartGameTimer: (allowedTime: number) => globalActions.asyncGameTimerStart(allowedTime)
 }
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -70,8 +78,9 @@ class StartButton extends React.Component<AllProps, State> {
 
                 //clean up the setInterval(for the local timer) 
                 clearInterval(this.setIntervalReference);
-                //start the central redux game timer.
-                this.props.onStartGameTimer(150);
+
+                //start the central redux game timer
+                this.props.onStartGameTimer(this.props.allowedTime);
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {
