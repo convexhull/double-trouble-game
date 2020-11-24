@@ -1,18 +1,14 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 
 
 //import styles
-import classes from './Volume.module.css';
+import classes from './Sound.module.css';
 
 
 //import images
 import SoundOnSvg from '../../../../../assets/images/sound/sound-on.svg';
 import SoundOffSvg from '../../../../../assets/images/sound/sound-off.svg';
 
-
-//import types
-import { RootState } from '../../../../../store/store';
 
 
 type State = {
@@ -23,19 +19,9 @@ type PropsFromParent = {
 
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        currentScore: state.gameState.current_score
-    }
-}
 
 
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-
-type AllProps = PropsFromParent & PropsFromRedux;
+type AllProps = PropsFromParent;
 
 
 class Sound extends React.Component<AllProps, State> {
@@ -65,4 +51,4 @@ class Sound extends React.Component<AllProps, State> {
 }
 
 
-export default connector(Sound);
+export default Sound;

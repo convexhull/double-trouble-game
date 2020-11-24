@@ -1,7 +1,9 @@
+//import types
 import {
     GameState,
     AllActions,
-    UpdateGameScoreSuccessPayload
+    UpdateGameScoreSuccessPayload,
+    GameInfo
 } from './types';
 
 import { ThunkAction } from 'redux-thunk';
@@ -14,6 +16,52 @@ import { RootState } from '../store';
 import Axios from '../../axios/axios';
 
 
+
+
+/**
+ * Action creators for fetching all games
+ */
+
+
+ const fetchAllGamesStart = () => {
+     return {
+         type: "FETCH_ALL_GAMES_START",
+     }
+ }
+
+const fetchAllGamesSuccess = (payload: GameInfo[]) => {
+    return {
+        type: "FETCH_ALL_GAMES_SUCCESS",
+        payload: payload
+    }
+}
+
+const fetchAllGamesFailure = () => {
+    return {
+        type: "FETCH_ALL_GAMES_FAILURE"
+    }
+}
+
+
+export const asyncFetchAllGamesStart = (): ThunkAction<void, RootState, unknown, Action<string>> => {
+    return async (dispatch) => {
+        dispatch(fetchAllGamesStart());
+        try {
+            let apiResponse = await Axios.get(`/game`);
+            let apiResponseData: GameInfo[] = apiResponse.data;
+            dispatch(fetchAllGamesSuccess(apiResponseData));
+        } catch(e) {
+            dispatch(fetchAllGamesFailure());
+        }
+    }
+}
+
+
+
+
+/**
+ * Action creators for fetch game info
+ */
 
 const fetchGameInfoStart = (): AllActions => {
     return {
@@ -99,9 +147,9 @@ export const asyncUpdateGameScoreStart = (): ThunkAction<void, RootState, unknow
         dispatch(updateGameScoreStart());
         let current_state = getState();
         let data = {
-            score: current_state.gameState.current_score,
+            score: current_state.gameState.currentGameStats.current_score,
             user_id: current_state.globalState.current_user.id,
-            game_id: current_state.gameState.id
+            game_id: current_state.gameState.currentGameInfo.id
         }
         try {
             let apiResponse = await Axios.put('/score', data);

@@ -21,7 +21,7 @@ import { RootState } from '../../../../store/store';
 //import components
 import Timer from './Timer/Timer';
 import Score from './Score/Score';
-import Volume from './Volume/Volume';
+import Sound from './Sound/Sound';
 
 
 
@@ -62,8 +62,8 @@ class ControlPanel extends React.Component<AllProps, State> {
                 <div className={classes["score"]}>
                     <Score />
                 </div>
-                <div className={classes["volume"]}>
-                    <Volume />
+                <div className={classes["sound"]}>
+                    <Sound />
                 </div>
             </div>
         )

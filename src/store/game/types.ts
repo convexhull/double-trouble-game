@@ -1,16 +1,52 @@
 /**
  * Type for GameState slice of the app state
  */
-export type GameState = {
+
+export type GameInfo = {
     id: string;
     name: string;
     intro_text: string;
     farewell_text: string;
     time: number;
+};
+
+export type GameStats = {
     timeRemaining: number | null;
     current_score: number;
     updatedScore: number;
 };
+
+export type GameState = {
+    currentGameInfo: GameInfo;
+    currentGameStats: GameStats;
+    availableGames: GameInfo[];
+};
+
+/**
+ * TYPES FOR FETCHING ALL GAMES
+ */
+
+type FetchAllGamesStartAction = {
+    type: "FETCH_ALL_GAMES_START";
+};
+
+type FetchAllGamesSuccessAction = {
+    type: "FETCH_ALL_GAMES_SUCCESS";
+    payload: GameInfo[];
+};
+
+type FetchAllGamesFailureAction = {
+    type: "FETCH_ALL_GAMES_FAILURE";
+    payload: {
+        errorMessage: string;
+        errorCode: number;
+    };
+};
+
+export type FetchAllGamesActions =
+    | FetchAllGamesStartAction
+    | FetchAllGamesSuccessAction
+    | FetchAllGamesFailureAction;
 
 /**
  * TYPES FOR GAME INFO RELATED ACTIONS
@@ -86,4 +122,4 @@ type GameScoreActions =
     | UpdateGameScoreSuccessAction
     | UpdateGameScoreFailureAction;
 
-export type AllActions = GameScoreActions | FetchGameInfoActions;
+export type AllActions = GameScoreActions | FetchGameInfoActions | FetchAllGamesActions;

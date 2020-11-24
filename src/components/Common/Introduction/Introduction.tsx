@@ -45,7 +45,7 @@ type PropsFromParent = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        introText: state.gameState.intro_text
+        introText: state.gameState.currentGameInfo.intro_text
     }
 
 }
@@ -72,7 +72,7 @@ class IntroductionPage extends React.Component<AllProps, State> {
     state: State = {
 
     }
-
+    
     render() {
         let introText = this.props.introText;
         //replace periods by newlines for proper formatting.

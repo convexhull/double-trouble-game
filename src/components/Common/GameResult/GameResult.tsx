@@ -31,7 +31,7 @@ type PropsFromParents = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        updatedScore: state.gameState.updatedScore
+        updatedScore: state.gameState.currentGameStats.updatedScore
     }
 }
 

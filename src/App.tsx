@@ -9,6 +9,8 @@ import DoubleTroubleGame from './pages/DoubleTrouble/DoubleTrouble';
 
 //import actions
 import * as globalActions from './store/global/actionCreators';
+import * as gameActions from './store/game/actionCreators';
+import { RootState } from './store/store';
 
 
 
@@ -19,6 +21,7 @@ type State = {
 type PropsFromParent = {
 
 }
+
 
 const mapDispatchToProps = {
   onFetchUserInfo: () => globalActions.asyncGetUserStart()
@@ -39,6 +42,7 @@ class App extends React.Component<AllProps, State> {
   }
 
   render(){
+
     return (
       <div className="App">
         <Switch>
