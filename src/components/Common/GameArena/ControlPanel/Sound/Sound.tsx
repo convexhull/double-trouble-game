@@ -24,7 +24,7 @@ type PropsFromParent = {
 type AllProps = PropsFromParent;
 
 
-class Sound extends React.Component<AllProps, State> {
+export class Sound extends React.Component<AllProps, State> {
 
     state = {
         soundOn: true
@@ -43,7 +43,7 @@ class Sound extends React.Component<AllProps, State> {
         return (
             <div className={classes["Container"]}>
                 <div className={classes["sound-btn"]}>
-                    {this.state.soundOn ? <img src={SoundOnSvg} alt="sound-on button" onClick={this.toggleSound} /> : <img src={SoundOffSvg} alt="sound-on button" onClick={this.toggleSound} />}
+                    {this.state.soundOn ? <img src={SoundOnSvg} alt="sound-on button" onClick={this.toggleSound} /> : <img src={SoundOffSvg} alt="sound-off button" onClick={this.toggleSound} />}
                 </div>
             </div>
         )

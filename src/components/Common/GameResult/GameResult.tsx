@@ -50,7 +50,7 @@ type AllProps = PropsFromParents & PropsFromRedux;
 
 
 
-class GameResult extends React.Component<AllProps, State> {
+export class GameResult extends React.Component<AllProps, State> {
 
     componentDidMount() {
         this.props.onUpdateScore();

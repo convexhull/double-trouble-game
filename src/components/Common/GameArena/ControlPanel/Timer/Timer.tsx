@@ -48,7 +48,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type AllProps = PropsFromParents & PropsFromRedux;
 
 
-class Timer extends React.Component<AllProps, State> {
+export class Timer extends React.Component<AllProps, State> {
     progressBarRef: React.RefObject<HTMLInputElement>;
     constructor(props: AllProps){
         super(props);

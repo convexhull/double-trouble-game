@@ -72,7 +72,6 @@ class StartButton extends React.Component<AllProps, State> {
         this.setIntervalReference = setInterval(() => {
             //This setInterval callback updates timeRemaining in the local timer. 
 
-
             if (this.state.timeRemaining === 1) {
                 //work to be done in last second
 
@@ -81,6 +80,7 @@ class StartButton extends React.Component<AllProps, State> {
 
                 //start the central redux game timer
                 this.props.onStartGameTimer(this.props.allowedTime);
+                alert('change agove before commit');
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {

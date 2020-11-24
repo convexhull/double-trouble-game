@@ -21,7 +21,11 @@ const mapStateToProps = (state: RootState) => {
 }
 
 
-const connector = connect(mapStateToProps);
+const mapDispatchToProps = {
+}
+
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -29,18 +33,19 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type AllProps = PropsFromParent & PropsFromRedux;
 
 
-const Score: React.FC<AllProps> = (props: AllProps) => {
-    return (
-        <div className={classes["Container"]}>
-            <div className={classes["score-card"]}>
-                <p className={classes["score-card__title"]}>SCORE</p>
-                <p className={classes["score-card__score"]}>{props.currentScore}</p>
+export class Score extends React.Component<AllProps> {
+    render() {
+        return (
+            <div className={classes["Container"]}>
+                <div className={classes["score-card"]}>
+                    <p className={classes["score-card__title"]}>SCORE</p>
+                    <p className={classes["score-card__score"]}>{this.props.currentScore}</p>
+                </div>
+                <div className={classes["score-canvas"]}>
+                </div>
             </div>
-            <div className={classes["score-canvas"]}>
-            </div>
-        </div>
-    )
+        )
+    }
 }
-
 
 export default connector(Score);
