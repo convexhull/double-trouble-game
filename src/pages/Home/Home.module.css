@@ -1,0 +1,25 @@
+.Container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.welcome {
+    font-size: 3rem;
+}
+
+.available-games {
+    font-size: 2rem;
+}
+
+.game-list {
+    list-style: none;
+    font-size: 2rem;
+}
+
+
+.game-list a:link , .game-list a:visited {
+    color: var(--light-purple);
+}

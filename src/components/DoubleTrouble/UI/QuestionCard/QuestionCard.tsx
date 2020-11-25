@@ -73,7 +73,7 @@ export class OptionButton extends React.Component<AllProps, State> {
             }
 
             return (
-                <p onClick={() => this.clickHandler(this.props.question, option, index)} className={optionTextClasses.join(' ')}>
+                <p key={option.text} onClick={() => this.clickHandler(this.props.question, option, index)} className={optionTextClasses.join(' ')}>
                     {option.text.toUpperCase() }
                     {this.props.wrongChoice ? <img className={classes["cross-sign"]} src={CrossSign} alt="" /> : null}
                 </p>

@@ -58,7 +58,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type AllProps = PropsFromParents & RouteComponentProps & PropsFromRedux;
 
-class GameArena extends React.Component<AllProps, State> {
+export class GameArena extends React.Component<AllProps, State> {
 
 
     componentDidUpdate() {
