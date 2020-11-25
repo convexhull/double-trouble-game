@@ -32,7 +32,8 @@ type PropsFromParents = {
 const mapStateToProps = (state: RootState) => {
     return {
         updatedScore: state.gameState.currentGameStats.updatedScore,
-        loading: state.loadingState.UPDATE_GAME_SCORE
+        loading: state.loadingState.UPDATE_GAME_SCORE,
+        farewellText: state.gameState.currentGameInfo.farewell_text
     }
 }
 
@@ -70,7 +71,7 @@ export class GameResult extends React.Component<AllProps, State> {
                         </span>
                     </div>
                     <p className={classes["final-word"]}>
-                        We will reach you as soon as we carefully review your interview.
+                        {this.props.farewellText}
                 </p>
                 </React.Fragment>
             )

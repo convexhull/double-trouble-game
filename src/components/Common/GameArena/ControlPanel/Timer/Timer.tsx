@@ -33,7 +33,8 @@ const mapStateToProps = (state: RootState) => {
     return {
         //convert totalTime(s) to ms for smoother animation in countdown progress bar.
         baseTime: state.globalState.timer.baseTime,
-        timeRemaining: state.globalState.timer.timeRemaining
+        timeRemaining: state.globalState.timer.timeRemaining,
+        allowedTime: state.gameState.currentGameInfo.time
     }
 }
 
@@ -71,7 +72,11 @@ export class Timer extends React.Component<AllProps, State> {
     }
 
     render() {
-        let remaining_height = (this.state.progressBarFullHeight / this.props.baseTime) * this.props.timeRemaining;
+        //logic for calculating progress bar height. If base time is not yet set, means redux timer hasn't started. So display full ht. 
+        let remaining_height = this.state.progressBarFullHeight;
+        if(this.props.baseTime !== 0){
+            remaining_height = (this.state.progressBarFullHeight / this.props.baseTime) * (this.props.timeRemaining);
+        }
         return (
             <div className={classes["Container"]}>
                 <div ref={this.progressBarRef} className={classes["timer-progressbar-container"]}>
@@ -80,7 +85,8 @@ export class Timer extends React.Component<AllProps, State> {
                 </div>
                 <div className={classes["timer-digital"]}>
                     <p className={classes["timer-digital__title"]}>TIME</p>
-                    <p className={classes["timer-digital__value"]}>{this.props.timeRemaining}</p>
+                    {/* Here if timeRemaining is 0, it means redux timer hasn't yet started i.e game hasn't begun, so display max allowed time */}
+                    <p className={classes["timer-digital__value"]}>{this.props.timeRemaining || this.props.allowedTime}</p>
                 </div>
                 <div className={classes["timer-canvas"]}>
                 </div>
