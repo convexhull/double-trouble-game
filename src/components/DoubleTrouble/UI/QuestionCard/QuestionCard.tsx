@@ -7,7 +7,8 @@ import React from 'react';
  */
 
 
-
+//import images
+import CrossSign from '../../../../assets/images/gamePlay/cross-sign.svg';
 //import styles
 import classes from './QuestionCard.module.css';
 
@@ -28,7 +29,8 @@ type Question = {
 type PropsFromParents = {
     question: Question,
     hoverable: boolean,
-    clicked: (question: Question, option: Option) => void
+    clicked: (question: Question, option: Option) => void,
+    wrongChoice: boolean
 }
 
 type AllProps = PropsFromParents;
@@ -47,14 +49,21 @@ const OptionButton: React.FC<AllProps> = (props) => {
     //assign css classes dynamically to option texts(for font color assignment)
     let options = props.question.options.map((option) => {
         let optionTextClasses = [classes["text-box"], classes["option"]];
-        if (option.color === "red") {
-            optionTextClasses.push(classes["option--red"]);
+        if(props.wrongChoice){
+            //give cross sign feedback on wrong answer if wrong choice selected
+            optionTextClasses.push(classes["wrong-choice-selected"]);
         } else {
-            optionTextClasses.push(classes["option--blue"]);
+            if (option.color === "red") {
+                optionTextClasses.push(classes["option--red"]);
+            } else {
+                optionTextClasses.push(classes["option--blue"]);
+            }
         }
+        
         return (
             <p onClick={() => props.clicked(props.question, option)} className={optionTextClasses.join(' ')}>
-                {option.text.toUpperCase()}
+                {!props.wrongChoice ? option.text.toUpperCase() : null}
+                {props.wrongChoice ? <img className={classes["cross-sign"]} src={CrossSign} alt="" /> : null }
             </p>
         );
     })

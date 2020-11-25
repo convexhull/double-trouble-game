@@ -67,3 +67,18 @@
 .option--hoverable {
 
 }
+
+
+
+.wrong-choice-selected {
+    background-color: var(--light-purple) !important;
+    color: var(--light-purple) !important;
+    text-align: center;
+    position: relative;
+}
+
+
+.cross-sign {
+    position: absolute;
+    left: 85px;
+}
