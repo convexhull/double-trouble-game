@@ -28,54 +28,66 @@ type Question = {
 
 type PropsFromParents = {
     question: Question,
-    hoverable: boolean,
     clicked: (question: Question, option: Option) => void,
-    wrongChoice: boolean
+    wrongChoice: boolean,
 }
 
 type AllProps = PropsFromParents;
 
 
-const OptionButton: React.FC<AllProps> = (props) => {
+type State = {
+    chosenChoiceIndex: number
+}
 
-    //assign css classes dynamically to question text(for font color assignment)
-    let questionTextClasses = [classes["text-box"], classes["question"]];
-    if (props.question.question.color === "red") {
-        questionTextClasses.push(classes["question--red"]);
-    } else {
-        questionTextClasses.push(classes["question--blue"]);
+export class OptionButton extends React.Component<AllProps, State> {
+
+
+    clickHandler = (question: Question, option: Option, index: number) => {
+        this.setState({
+            chosenChoiceIndex: index
+        })
+        this.props.clicked(question, option);
     }
 
-    //assign css classes dynamically to option texts(for font color assignment)
-    let options = props.question.options.map((option) => {
-        let optionTextClasses = [classes["text-box"], classes["option"]];
-        if(props.wrongChoice){
-            //give cross sign feedback on wrong answer if wrong choice selected
-            optionTextClasses.push(classes["wrong-choice-selected"]);
+    render() {
+        //assign css classes dynamically to question text(for font color assignment)
+        let questionTextClasses = [classes["text-box"], classes["question"]];
+        if (this.props.question.question.color === "red") {
+            questionTextClasses.push(classes["question--red"]);
         } else {
-            if (option.color === "red") {
-                optionTextClasses.push(classes["option--red"]);
-            } else {
-                optionTextClasses.push(classes["option--blue"]);
-            }
+            questionTextClasses.push(classes["question--blue"]);
         }
-        
-        return (
-            <p onClick={() => props.clicked(props.question, option)} className={optionTextClasses.join(' ')}>
-                {!props.wrongChoice ? option.text.toUpperCase() : null}
-                {props.wrongChoice ? <img className={classes["cross-sign"]} src={CrossSign} alt="" /> : null }
-            </p>
-        );
-    })
 
-    return (
-        <div className={classes["Container"]}>
-            <p className={questionTextClasses.join(' ')}>{props.question.question.text.toUpperCase()}</p>
-            <div className={classes["options"]}>
-                {options}
+        //assign css classes dynamically to option texts(for font color assignment)
+        let options = this.props.question.options.map((option, index) => {
+            let optionTextClasses = [classes["text-box"], classes["option"]];
+            if (this.props.wrongChoice && index === this.state.chosenChoiceIndex) {
+                //give cross sign feedback on wrong answer if wrong choice selected
+                optionTextClasses.push(classes["wrong-choice-selected"]);
+            } else {
+                if (option.color === "red") {
+                    optionTextClasses.push(classes["option--red"]);
+                } else {
+                    optionTextClasses.push(classes["option--blue"]);
+                }
+            }
+
+            return (
+                <p onClick={() => this.clickHandler(this.props.question, option, index)} className={optionTextClasses.join(' ')}>
+                    {option.text.toUpperCase() }
+                    {this.props.wrongChoice ? <img className={classes["cross-sign"]} src={CrossSign} alt="" /> : null}
+                </p>
+            );
+        })
+        return (
+            <div className={classes["Container"]}>
+                <p className={questionTextClasses.join(' ')}>{this.props.question.question.text.toUpperCase()}</p>
+                <div className={classes["options"]}>
+                    {options}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default OptionButton;

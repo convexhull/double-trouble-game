@@ -37,7 +37,7 @@ import { RootState } from '../../../store/store';
 
 type State = {
     questionCounter: number,
-    wrongChoice: boolean
+    wrongChoice: boolean,
 }
 
 
@@ -67,7 +67,9 @@ class Gameplay extends React.Component<AllProps, State> {
         super(props);
         this.state = {
             questionCounter: 0,
-            wrongChoice: false
+
+            //for displaying cross sign feedback on choosing wrong answer
+            wrongChoice: false,
         }
     }
 
@@ -78,19 +80,25 @@ class Gameplay extends React.Component<AllProps, State> {
         let score = GameUtils.checkAnswer(question, answer) ? 1 : 0;
         if (score === 1) {
             this.props.onIncrementScore();
-            this.setState({
-                questionCounter: this.state.questionCounter + 1
+            this.setState(state => {
+                return {
+                    questionCounter: state.questionCounter + 1
+                }
             })
         }
 
+
         else {
+            //dispaly cross sign for 1/2 second. Then proceed to next question
             this.setState({
-                wrongChoice: true
+                wrongChoice: true,
             })
             setTimeout(() => {
-                this.setState({
-                    wrongChoice: false,
-                    questionCounter: this.state.questionCounter + 1
+                this.setState(state => {
+                    return {
+                        wrongChoice: false,
+                        questionCounter: state.questionCounter + 1
+                    }
                 })
             }, 500);
         }
@@ -103,7 +111,7 @@ class Gameplay extends React.Component<AllProps, State> {
         return (
             <div className={classes["Container"]}>
                 <div>
-                    <QuestionCard question={question} hoverable clicked={this.optionClickHandler} wrongChoice={this.state.wrongChoice} />
+                    <QuestionCard question={question} clicked={this.optionClickHandler} wrongChoice={this.state.wrongChoice} />
                 </div>
             </div>
         )
