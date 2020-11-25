@@ -39,7 +39,7 @@ const IntroIllustration: React.FC<AllProps> = (props) => {
                 <div className={classes["question__tip"]}><div className={classes["long-dash"]}></div>WORD IS IN BLUE COLOR</div>
             </div>
             <div className={classes["options"]}>
-                <div className={classes["option-container"]}>
+                <div className={classes["option-container"] + ' ' + classes["option-container--red"]}>
                     <p className={option1TextClasses.join(' ')}>
                         RED
                     <img className={classes["wrong-icon"]} src={WrongIcon} alt="cross icon"/>

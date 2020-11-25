@@ -110,9 +110,7 @@ class Gameplay extends React.Component<AllProps, State> {
         let question = data[this.state.questionCounter % data.length];
         return (
             <div className={classes["Container"]}>
-                <div>
                     <QuestionCard question={question} clicked={this.optionClickHandler} wrongChoice={this.state.wrongChoice} />
-                </div>
             </div>
         )
     }

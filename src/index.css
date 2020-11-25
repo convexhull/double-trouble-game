@@ -31,3 +31,22 @@ html {
     font-size: 14px;
 
 }
+
+
+
+
+/******** media queries **************/
+
+
+@media (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 411px) {
+  html {
+    font-size: 10px;
+  }
+}

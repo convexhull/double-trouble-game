@@ -24,3 +24,19 @@
     background-color: var(--lime-green);
     color: var(--primary-background);
 }
+
+
+
+
+/*********** media queries **************/
+
+@media (max-width: 420px) {
+    .btn {
+        width: 18rem;
+        height: 4rem;
+    }
+
+    .cta {
+        border-radius: 2rem;
+    }
+}

@@ -1,6 +1,7 @@
 .Container {
     display: flex;
     background: rgba(35, 24, 38, 1) 0% 0% no-repeat padding-box;
+    height: 100vh;
 }
 
 .control-panel {

@@ -106,3 +106,55 @@
     top: 20px;
     right: -30px;
 }
+
+
+
+
+
+/*********** media queries *************/
+
+
+
+@media (max-width: 768px) {
+    .Container {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .options {
+        flex-direction: column;
+        padding-top: 2rem;
+    }
+
+    .option-tip {
+        padding-top: 0;
+    }
+
+    .question__tip {
+        position: absolute;
+        left: -50px;
+        width: 300px;
+    }
+    .question-container {
+        width: 100%;
+    }
+
+    .question {
+        padding: 0;
+        height: auto;
+    }
+
+    .long-dash {
+        display: none;
+        left: 0;
+    }
+
+    .option-container--red {
+        margin-bottom: 3rem;
+    }
+
+
+    .text-box {
+        --height: 90px;
+    }
+}
