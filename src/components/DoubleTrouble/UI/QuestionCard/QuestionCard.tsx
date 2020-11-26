@@ -66,6 +66,10 @@ export class QuestionCard extends React.Component<AllProps, State> {
         //assign css classes dynamically to option texts(for font color assignment)
         let options = this.props.question.options.map((option, index) => {
             let optionTextClasses = [classes["text-box"], classes["option"]];
+            if(this.props.wrongChoice){
+                //if a wrong choice is chosen, disable both options until wrongChoice is reset(by <Gameplay /> component after 500ms )
+                optionTextClasses.push(classes["click-disabled"]);
+            }
             if (this.props.wrongChoice && index === this.state.chosenChoiceIndex) {
                 //if this option chosen and its a wrong choice, then add following css class to give pink background(background of the cross sign)
                 optionTextClasses.push(classes["wrong-choice-selected"]);

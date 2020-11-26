@@ -84,11 +84,12 @@ export class Gameplay extends React.Component<AllProps, State> {
 
 
         else {
-            //dispaly cross sign for 1/2 second. Then proceed to next question
             this.setState({
+                //display cross sign for 1/2 second and disable the options (in child component <QuestionCard />)
                 wrongChoice: true,
             })
             setTimeout(() => {
+                //After 500ms or 1/2 second, set wrongChoice to false. This will enable click and remove cross-sign from options in QuestionCard component. 
                 this.setState(state => {
                     return {
                         wrongChoice: false,

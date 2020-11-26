@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from "@testing-library/react";
 import { Home } from './Home';
+import { MemoryRouter } from "react-router-dom";
 
 //Mock child components
 
@@ -14,7 +15,9 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container } = render(<Home {...testProps} />);
+        const { container } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
         expect(container).toBeInTheDocument();
     })
 
@@ -25,7 +28,9 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container } = render(<Home {...testProps} />);
+        const { container } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
         expect(mockFunc).toHaveBeenCalledTimes(1);
     })
 
@@ -37,7 +42,9 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container } = render(<Home {...testProps} />);
+        const { container } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
         expect(container.querySelector(".Container")).toBeEmptyDOMElement();
     })
 
@@ -49,7 +56,9 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container, queryByText } = render(<Home {...testProps} />);
+        const { container, queryByText } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
         expect(queryByText(/welcome/i)).toBeInTheDocument();
     })
 
@@ -67,7 +76,28 @@ describe("<Home />", () => {
             onLoadAllGames: mockFunc
         }
 
-        const { container } = render(<Home {...testProps} />);
+        const { container } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
         expect(container.querySelector(".game-list")?.childElementCount).toBe(testProps.availableGames.length);
+    })
+
+    it("should have direct user to /double-trouble/intro on clicking game link for Double Trouble game", () => {
+        const mockFunc = jest.fn()
+        const testProps = {
+            loading: false,
+            availableGames: [{
+                id: 1,
+                name: 'Double Trouble',
+                intro_text: "test-intro",
+                farewell_text: "test-farewell",
+                time: 10
+            }],
+            onLoadAllGames: mockFunc
+        }
+        const { container, queryByText } = render(<MemoryRouter>
+            <Home {...testProps} />
+        </MemoryRouter>);
+        expect(queryByText("Double Trouble")?.getAttribute("href")).toBe("/double-trouble/intro");
     })
 })

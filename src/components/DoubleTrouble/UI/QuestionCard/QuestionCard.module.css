@@ -90,6 +90,10 @@
 }
 
 
+.click-disabled {
+    pointer-events: none;
+}
+
 
 
 /****** media queries *************/

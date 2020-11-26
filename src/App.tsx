@@ -13,8 +13,6 @@ import Page404 from './pages/Page404/Page404';
 
 //import actions
 import * as globalActions from './store/global/actionCreators';
-import * as gameActions from './store/game/actionCreators';
-import { RootState } from './store/store';
 
 
 
@@ -26,17 +24,12 @@ type PropsFromParent = {
 
 }
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    availableGames: state.gameState.availableGames
-  }
-}
 
 const mapDispatchToProps = {
   onFetchUserInfo: () => globalActions.asyncGetUserStart()
 }
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 
 type PropsFromRedux = ConnectedProps<typeof connector>; 

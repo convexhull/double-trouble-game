@@ -149,6 +149,33 @@ describe("Double Trouble: <QuestionCard />", () => {
         expect(mockFunc).toHaveBeenCalledTimes(2);
     })
 
+    it("should disable both options when wrong choice chosen", () => {
+        const mockFunc = jest.fn();
+        const testProps = {
+            question: {
+                "question" : {
+                    "text" : "red",
+                    "color" : "blue"
+                },
+                "options" : [
+                    {       
+                        "text" : "red",
+                        "color" : "blue"
+                    },
+                    {
+                        "text" : "blue",
+                        "color" : "red"
+                    }
+                ]
+            },
+            clicked: mockFunc,
+            wrongChoice: true
+        }
+        const { container } = render(<QuestionCard {...testProps} />);
+        expect(container.querySelector(".options")?.firstChild).toHaveClass("click-disabled");
+        expect(container.querySelector(".options")?.firstChild).toHaveClass("click-disabled");
+    })
+
 
     it("should display cross sign on the wrong option if it is chosen", () => {
         const mockFunc = jest.fn();
