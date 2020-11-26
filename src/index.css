@@ -45,7 +45,7 @@ html {
 }
 
 
-@media (max-width: 411px) {
+@media (max-width: 420px) {
   html {
     font-size: 10px;
   }

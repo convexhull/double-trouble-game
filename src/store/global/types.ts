@@ -92,9 +92,17 @@ export interface GetUserSuccessAction {
     payload: GetUserSuccessPayload;
 }
 
+export interface GetUserFailureAction {
+    type: "GET_USER_FAILURE",
+    payload: {
+        message: string
+    }
+}
+
 export type UserActions =
     | GetUserStartAction
-    | GetUserSuccessAction;
+    | GetUserSuccessAction
+    | GetUserFailureAction ;
 
 
 

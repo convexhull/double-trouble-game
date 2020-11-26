@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-import { connect, ConnectedProps } from 'react-redux';
 
 /**
  * 
@@ -14,7 +13,6 @@ import classes from './ControlPanel.module.css';
 
 
 //import types
-import { RootState } from '../../../../store/store';
 
 
 
@@ -29,30 +27,13 @@ type State = {
     
 }
 
-
-
-
-const mapStateToProps = (state: RootState) => {
-    return {
-        //convert totalTime(s) to ms for smoother animation in countdown progress bar.
-        baseTime: state.globalState.timer.baseTime,
-        timeRemaining: state.globalState.timer.timeRemaining
-    }
-}
-
-const connector = connect(mapStateToProps);
-
 type PropsFromParents = {
 
 }
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
+type AllProps = PropsFromParents;
 
-type AllProps = PropsFromParents & PropsFromRedux;
-
-
-class ControlPanel extends React.Component<AllProps, State> {
-
+export class ControlPanel extends React.Component<AllProps, State> {
     render() {
         return (
             <div className={classes["Container"]}>
@@ -70,4 +51,4 @@ class ControlPanel extends React.Component<AllProps, State> {
     }
 }
 
-export default connector(ControlPanel);
+export default ControlPanel;

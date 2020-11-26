@@ -13,13 +13,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import gameReducer from './game/reducer';
 import globalReducer from './global/reducer';
 import loadingStateReducer from './loadingState/reducer';
+import errorStateReducer from './errorState/reducer';
 
 
 
 export const rootReducer = combineReducers({
     gameState: gameReducer,
     globalState: globalReducer,
-    loadingState: loadingStateReducer
+    loadingState: loadingStateReducer,
+    errorState: errorStateReducer
 });
 
 

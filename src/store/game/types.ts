@@ -26,20 +26,19 @@ export type GameState = {
  * TYPES FOR FETCHING ALL GAMES
  */
 
-type FetchAllGamesStartAction = {
+export type FetchAllGamesStartAction = {
     type: "FETCH_ALL_GAMES_START";
 };
 
-type FetchAllGamesSuccessAction = {
+export type FetchAllGamesSuccessAction = {
     type: "FETCH_ALL_GAMES_SUCCESS";
     payload: GameInfo[];
 };
 
-type FetchAllGamesFailureAction = {
+export type FetchAllGamesFailureAction = {
     type: "FETCH_ALL_GAMES_FAILURE";
     payload: {
-        errorMessage: string;
-        errorCode: number;
+        message: string;
     };
 };
 
@@ -57,27 +56,26 @@ export const FETCH_GAME_INFO_SUCCESS: string = "FETCH_GAME_INFO_SUCCESS";
 export const FETCH_GAME_INFO_FAILURE: string = "FETCH_GAME_INFO_FAILURE";
 
 //describe type field as string literal (and not as 'string'), to make use of discriminated union for type inference in reducers
-type FetchGameInfoStartAction = {
+export type FetchGameInfoStartAction = {
     type: "FETCH_GAME_INFO_START";
     payload: {
         loading: boolean;
     };
 };
 
-type FetchGameInfoSuccessAction = {
+export type FetchGameInfoSuccessAction = {
     type: "FETCH_GAME_INFO_SUCCESS";
     payload: GameState;
 };
 
-type FetchGameInfoFailureAction = {
-    type: "FETCH_GAME_INFO_SUCCESS";
+export type FetchGameInfoFailureAction = {
+    type: "FETCH_GAME_INFO_FAILURE";
     payload: {
-        errorMessage: string;
-        errorCode: number;
+        message: string;
     };
 };
 
-type FetchGameInfoActions =
+export type FetchGameInfoActions =
     | FetchGameInfoStartAction
     | FetchGameInfoSuccessAction
     | FetchGameInfoFailureAction;
@@ -99,24 +97,27 @@ export type UpdateGameScoreSuccessPayload = {
 };
 
 //describe type field as string literal (and not as 'string'), to make use of discriminated union for type inference in reducers
-type IncrementGameScoreAction = {
+export type IncrementGameScoreAction = {
     type: "INCREMENT_GAME_SCORE";
 };
 
-type UpdateGameScoreStartAction = {
+export type UpdateGameScoreStartAction = {
     type: "UPDATE_GAME_SCORE_START";
 };
 
-type UpdateGameScoreSuccessAction = {
+export type UpdateGameScoreSuccessAction = {
     type: "UPDATE_GAME_SCORE_SUCCESS";
     payload: UpdateGameScoreSuccessPayload;
 };
 
-type UpdateGameScoreFailureAction = {
+export type UpdateGameScoreFailureAction = {
     type: "UPDATE_GAME_SCORE_FAILURE";
+    payload: {
+        message: string
+    }
 };
 
-type GameScoreActions =
+export type GameScoreActions =
     | IncrementGameScoreAction
     | UpdateGameScoreStartAction
     | UpdateGameScoreSuccessAction

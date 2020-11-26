@@ -1,33 +1,55 @@
-import { Reducer } from "redux";
+/**
+ * Significance of this reducer: 
+ * 
+ * # This errorState reducer will take care of all the API requests failure throughout the app. 
+ * # If any async action fails and dispatches a _FAILURE type action, then this reducer makes the error state 
+ * for corresponding action to store the error message. Else if no error, then this message is cleared. 
+ */
 
-//import types
-import { AllActions, LoadingState } from "./types";
 
-const initState = {
-    GET_TODOS: false,
-    UPDATE_USER_SCORE: false,
+export type ErrorState = {
+  //The keys here should be prefix of the respective action that it corresponds to.
+  //For example, if the actions to be covered are FETCH_GAME_INFO_START, FETCH_GAME_INFO_SUCCESS and FETCH_GAME_INFO_FAILURE
+  //then our ErrorState slice will contain FETCH_GAME_INFO field. This pattern is important and is used for regex based
+  //matching in the reducer.
+  UPDATE_GAME_SCORE: string,
+  FETCH_ALL_GAMES: string,
+  FETCH_GAME_INFO: string,
+  GET_USER: string
+}
+
+type ErrorAction = {
+  type: string,
+  payload: {
+    message: string
+  }
+}
+
+
+const initState: ErrorState = {
+  UPDATE_GAME_SCORE: '',
+  FETCH_ALL_GAMES: '',
+  FETCH_GAME_INFO: '',
+  GET_USER: ''
 };
 
-const loadingReducer: Reducer<LoadingState, AllActions> = (
-    state = initState,
-    action
-) => {
-    const { type } = action;
-    const matches = /(.*)_(START|SUCCESS|FAILURE)/.exec(type);
 
-    // not a *_START / *_SUCCESS /  *_FAILURE actions, so we ignore them
-    if (!matches) {
-        return state;
-    }
+const errorStateReducer = (state = initState, action: ErrorAction) => {
+    const { type, payload } = action;
+    const matches = /(.*)_(REQUEST|FAILURE)/.exec(type);
+
+    // not a *_REQUEST / *_FAILURE actions, so we ignore them
+    if (!matches) return state;
 
     const [, requestName, requestState] = matches;
     return {
         ...state,
-        // Store whether a request is happening at the moment or not
-        // e.g. will be true when receiving GET_GAME_INFO_START
-        //      and false when receiving GET_GAME_INFO_SUCCESS / GET_GAME_INFO_FAILURE
-        [requestName]: requestState === "START",
+        // Store errorMessage
+        // e.g. stores errorMessage when receiving GET_TODOS_FAILURE
+        //      else clear errorMessage when receiving GET_TODOS_REQUEST
+        [requestName]: requestState === "FAILURE" ? payload.message : "",
     };
 };
 
-export default loadingReducer;
+
+export default errorStateReducer;

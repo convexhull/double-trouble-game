@@ -17,7 +17,7 @@ type PropsFromParents = {
 
 type AllProps = PropsFromParents;
 
-const Button: React.FC<AllProps> = (props) =>  {
+export const Button: React.FC<AllProps> = (props) =>  {
     let btnClasses = [classes["btn"]];
 
     switch(props.type){

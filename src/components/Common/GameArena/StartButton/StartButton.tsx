@@ -1,7 +1,7 @@
 //import modules
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 /**
  * This is the StartButton component. It has internal timer of 3s for the 3s delay before starting
@@ -42,7 +42,7 @@ type PropsFromParent = {
 
 }
 
-type AllProps = PropsFromParent & PropsFromRedux;
+type AllProps = PropsFromParent & PropsFromRedux & RouteComponentProps;
 
 
 type State = {
@@ -63,8 +63,12 @@ export class StartButton extends React.Component<AllProps, State> {
         timerRunning: false,
     }
 
-    mouseEnterHandler = () => {
-
+    componentDidMount() {
+        //Handle the case of user refreshing or reaching directly to the game arena, without introduction page. 
+        //Redirect the user to introduction page. 
+        if(this.props.allowedTime === 0){
+            this.props.history.push('./intro');
+        }
     }
 
     clickHandler = () => {
@@ -85,7 +89,7 @@ export class StartButton extends React.Component<AllProps, State> {
                 clearInterval(this.setIntervalReference);
 
                 //start the central redux game timer
-                this.props.onStartGameTimer(10);
+                this.props.onStartGameTimer(this.props.allowedTime);
             }
             //if not the last second, update state to continue the timer
             this.setState((state) => {
@@ -173,4 +177,4 @@ export class StartButton extends React.Component<AllProps, State> {
 
 
 
-export default connector(StartButton);
+export default connector(withRouter(StartButton));

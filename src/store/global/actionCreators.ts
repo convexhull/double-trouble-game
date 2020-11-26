@@ -59,6 +59,10 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
 }
 
 
+/**
+ * Action creators for GET_USER 
+ */
+
 export const getUserStart = (): UserActions => {
     return {
         type: "GET_USER_START"
@@ -78,15 +82,22 @@ export const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
     }
 }
 
+export const getUserFailure = (payload: {message: string}): UserActions => {
+    return {
+        type: "GET_USER_FAILURE",
+        payload: payload
+    }
+}
+
 export const asyncGetUserStart = (): ThunkAction<void, RootState, unknown, Action<string> > => {
     return async (dispatch) => {
         dispatch(getUserStart());
         try {
-            let apiResponse = await Axios.get('/user');
+            let apiResponse = await Axios.get('/useri');
             let apiResponseData = apiResponse.data;
             dispatch(getUserSuccess(apiResponseData));
         } catch(e) {
-            console.log(e);
+            dispatch(getUserFailure({message: e.message}));
         }
     }
 }

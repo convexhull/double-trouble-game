@@ -23,7 +23,7 @@ type State = {
 
 }
 
-class DoubleTrouble extends React.Component<AllProps, State> {
+export class DoubleTrouble extends React.Component<AllProps, State> {
     
     state: State = {
     

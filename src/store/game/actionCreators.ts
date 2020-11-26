@@ -36,9 +36,10 @@ const fetchAllGamesSuccess = (payload: GameInfo[]) => {
     }
 }
 
-const fetchAllGamesFailure = () => {
+const fetchAllGamesFailure = (payload: { message: string}) => {
     return {
-        type: "FETCH_ALL_GAMES_FAILURE"
+        type: "FETCH_ALL_GAMES_FAILURE",
+        payload: payload
     }
 }
 
@@ -51,7 +52,7 @@ export const asyncFetchAllGamesStart = (): ThunkAction<void, RootState, unknown,
             let apiResponseData: GameInfo[] = apiResponse.data;
             dispatch(fetchAllGamesSuccess(apiResponseData));
         } catch(e) {
-            dispatch(fetchAllGamesFailure());
+            dispatch(fetchAllGamesFailure({message: e.message}));
         }
     }
 }
@@ -81,7 +82,7 @@ export const asyncFetchGameInfoStart = (): ThunkAction<void, RootState, unknown,
             dispatch(fetchGameInfoSuccess(apiResponseData));
 
         } catch(e) {
-
+            dispatch(fetchGameInfoFailure({message: e.message}))
         }
     })
 }
@@ -96,16 +97,12 @@ export const fetchGameInfoSuccess = (payload: GameState): AllActions => {
 }
 
 
-/*rev*/
-// export const fetchGameInfoFailure = (): FetchGameInfoActions => {
-//     return {
-//         type: FETCH_GAME_INFO_SUCCESS,
-//         payload: {
-//             errorMessage: "",
-//             errorCode: ""
-//         }
-//     }
-// }
+export const fetchGameInfoFailure = (payload: { message: string}): AllActions => {
+    return {
+        type: "FETCH_GAME_INFO_FAILURE",
+        payload: payload
+    }
+}
 
 
 
@@ -135,9 +132,10 @@ const updateGameScoreSuccess = (payload: UpdateGameScoreSuccessPayload): AllActi
     }
 }
 
-const updateGameScoreFailure = (): AllActions => {
+const updateGameScoreFailure = (payload: { message: string}): AllActions => {
     return {
-        type: "UPDATE_GAME_SCORE_FAILURE"
+        type: "UPDATE_GAME_SCORE_FAILURE",
+        payload: payload
     }
 }
 
@@ -156,7 +154,7 @@ export const asyncUpdateGameScoreStart = (): ThunkAction<void, RootState, unknow
             let apiResponseData = apiResponse.data;
             dispatch(updateGameScoreSuccess(apiResponseData));
         } catch(e){
-            dispatch(updateGameScoreFailure());
+            dispatch(updateGameScoreFailure({message: e.message || "Some error occurred"}));
         }
     })
 }
