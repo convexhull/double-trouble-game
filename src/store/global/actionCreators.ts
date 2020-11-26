@@ -93,7 +93,7 @@ export const asyncGetUserStart = (): ThunkAction<void, RootState, unknown, Actio
     return async (dispatch) => {
         dispatch(getUserStart());
         try {
-            let apiResponse = await Axios.get('/useri');
+            let apiResponse = await Axios.get('/user');
             let apiResponseData = apiResponse.data;
             dispatch(getUserSuccess(apiResponseData));
         } catch(e) {

@@ -56,16 +56,16 @@ describe("globalState redux Actions", () => {
     })
 
     it("should create action on user fetch successfull", () => {
-        const samplePayload = {
+        const testPayload = {
             name: "testuser",
             id: "testuser-123",
             email: "testuser@email.com"
         }
         const expectedAction = {
             type: GET_USER_SUCCESS,
-            payload: samplePayload
+            payload: testPayload
         }
-        expect(actions.getUserSuccess(samplePayload)).toEqual(expectedAction);
+        expect(actions.getUserSuccess(testPayload)).toEqual(expectedAction);
     })
     
 

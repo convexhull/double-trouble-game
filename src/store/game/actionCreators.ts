@@ -23,20 +23,20 @@ import Axios from '../../axios/axios';
  */
 
 
- const fetchAllGamesStart = () => {
+export const fetchAllGamesStart = () => {
      return {
          type: "FETCH_ALL_GAMES_START",
      }
  }
 
-const fetchAllGamesSuccess = (payload: GameInfo[]) => {
+export const fetchAllGamesSuccess = (payload: GameInfo[]) => {
     return {
         type: "FETCH_ALL_GAMES_SUCCESS",
         payload: payload
     }
 }
 
-const fetchAllGamesFailure = (payload: { message: string}) => {
+export const fetchAllGamesFailure = (payload: { message: string}) => {
     return {
         type: "FETCH_ALL_GAMES_FAILURE",
         payload: payload
@@ -64,12 +64,9 @@ export const asyncFetchAllGamesStart = (): ThunkAction<void, RootState, unknown,
  * Action creators for fetch game info
  */
 
-const fetchGameInfoStart = (): AllActions => {
+export const fetchGameInfoStart = (): AllActions => {
     return {
-        type: "FETCH_GAME_INFO_START",
-        payload: {
-            loading: true
-        }
+        type: "FETCH_GAME_INFO_START"
     }
 }
 
@@ -79,6 +76,7 @@ export const asyncFetchGameInfoStart = (): ThunkAction<void, RootState, unknown,
         try {
             let apiResponse = await Axios.get(`/game/c77f35e3-d41c-446c-af63-80f430a962d0`);
             let apiResponseData: GameState = apiResponse.data;
+
             dispatch(fetchGameInfoSuccess(apiResponseData));
 
         } catch(e) {
@@ -87,9 +85,8 @@ export const asyncFetchGameInfoStart = (): ThunkAction<void, RootState, unknown,
     })
 }
 
-
-
 export const fetchGameInfoSuccess = (payload: GameState): AllActions => {
+
     return {
         type: "FETCH_GAME_INFO_SUCCESS",
         payload: payload
@@ -119,20 +116,20 @@ export const incrementGameScore = (): AllActions => {
  }
 
 
-const updateGameScoreStart = (): AllActions => {
+export const updateGameScoreStart = (): AllActions => {
     return {
         type: "UPDATE_GAME_SCORE_START"
     }
 }
 
-const updateGameScoreSuccess = (payload: UpdateGameScoreSuccessPayload): AllActions => {
+export const updateGameScoreSuccess = (payload: UpdateGameScoreSuccessPayload): AllActions => {
     return {
         type: "UPDATE_GAME_SCORE_SUCCESS",
         payload: payload
     }
 }
 
-const updateGameScoreFailure = (payload: { message: string}): AllActions => {
+export const updateGameScoreFailure = (payload: { message: string}): AllActions => {
     return {
         type: "UPDATE_GAME_SCORE_FAILURE",
         payload: payload

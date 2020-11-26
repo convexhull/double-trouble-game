@@ -58,9 +58,6 @@ export const FETCH_GAME_INFO_FAILURE: string = "FETCH_GAME_INFO_FAILURE";
 //describe type field as string literal (and not as 'string'), to make use of discriminated union for type inference in reducers
 export type FetchGameInfoStartAction = {
     type: "FETCH_GAME_INFO_START";
-    payload: {
-        loading: boolean;
-    };
 };
 
 export type FetchGameInfoSuccessAction = {

@@ -3,8 +3,12 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
+
+
+//import pages
 import HomePage from './pages/Home/Home';
 import DoubleTroubleGame from './pages/DoubleTrouble/DoubleTrouble';
+import Page404 from './pages/Page404/Page404';
 
 
 //import actions
@@ -52,6 +56,7 @@ export class App extends React.Component<AllProps, State> {
         <Switch>
             <Route exact path = "/" component = {HomePage} />
             <Route  path = "/double-trouble" component = {DoubleTroubleGame} />
+            <Route component={Page404} />
         </Switch>
       </div>
     );
