@@ -68,7 +68,6 @@ describe("<Home />", () => {
         }
 
         const { container } = render(<Home {...testProps} />);
-
         expect(container.querySelector(".game-list")?.childElementCount).toBe(testProps.availableGames.length);
     })
 })

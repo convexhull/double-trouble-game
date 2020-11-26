@@ -29,18 +29,23 @@ type Question = {
 type PropsFromParents = {
     question: Question,
     clicked: (question: Question, option: Option) => void,
-    wrongChoice: boolean,
+    //wrong choice === true means that a wrong answer was chosen
+    wrongChoice: boolean
 }
 
 type AllProps = PropsFromParents;
 
 
 type State = {
+    //we use chosenChoiceIndex to display cross-sign when user chooses the wrong option
     chosenChoiceIndex: number
 }
 
-export class OptionButton extends React.Component<AllProps, State> {
+export class QuestionCard extends React.Component<AllProps, State> {
 
+    state = {
+        chosenChoiceIndex: 0
+    }
 
     clickHandler = (question: Question, option: Option, index: number) => {
         this.setState({
@@ -62,7 +67,7 @@ export class OptionButton extends React.Component<AllProps, State> {
         let options = this.props.question.options.map((option, index) => {
             let optionTextClasses = [classes["text-box"], classes["option"]];
             if (this.props.wrongChoice && index === this.state.chosenChoiceIndex) {
-                //give cross sign feedback on wrong answer if wrong choice selected
+                //if this option chosen and its a wrong choice, then add following css class to give pink background(background of the cross sign)
                 optionTextClasses.push(classes["wrong-choice-selected"]);
             } else {
                 if (option.color === "red") {
@@ -71,11 +76,11 @@ export class OptionButton extends React.Component<AllProps, State> {
                     optionTextClasses.push(classes["option--blue"]);
                 }
             }
-
             return (
                 <p key={option.text} onClick={() => this.clickHandler(this.props.question, option, index)} className={optionTextClasses.join(' ')}>
-                    {option.text.toUpperCase() }
-                    {this.props.wrongChoice ? <img className={classes["cross-sign"]} src={CrossSign} alt="" /> : null}
+                    {option.text.toUpperCase()}
+                    {/* if this option has been chosen and its a wrong choice then display the cross sign */}
+                    {this.props.wrongChoice && index === this.state.chosenChoiceIndex ? <img className={classes["cross-sign"]} src={CrossSign} alt="cross-sign" /> : null}
                 </p>
             );
         })
@@ -90,4 +95,4 @@ export class OptionButton extends React.Component<AllProps, State> {
     }
 }
 
-export default OptionButton;
+export default QuestionCard;

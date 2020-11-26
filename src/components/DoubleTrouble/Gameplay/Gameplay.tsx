@@ -63,7 +63,7 @@ export class Gameplay extends React.Component<AllProps, State> {
         this.state = {
             questionCounter: 0,
 
-            //for displaying cross sign feedback on choosing wrong answer
+            //for displaying cross sign feedback on choosing wrong answer, passed to <QuestionCard /> child component
             wrongChoice: false,
         }
     }
