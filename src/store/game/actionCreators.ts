@@ -1,6 +1,5 @@
 //import types
 import {
-    GameState,
     AllActions,
     UpdateGameScoreSuccessPayload,
     GameInfo

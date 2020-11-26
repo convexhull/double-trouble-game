@@ -38,11 +38,11 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const { container } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         expect(historyPushMock).toBeCalledTimes(1);
     })
 
-    it("should display start btn and instructions when internal timer is not running ", () => {
+    it("should display start btn and instructions when internal timer is not running", () => {
         const startGameTimerMock = jest.fn()
         const historyPushMock = jest.fn();
         const testProps = {
@@ -52,7 +52,7 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const { container, queryByAltText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        const {  queryByAltText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         expect(queryByAltText("start-button")).toBeInTheDocument();
     })
     
@@ -66,7 +66,7 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const { container, queryByText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        const { queryByText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         expect(queryByText(/Instructions/)?.getAttribute("href")).toBe('/intro');
     })
 
@@ -80,7 +80,7 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const { container, queryByText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        const { queryByText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         expect(queryByText(/start the game/i)).toBeInTheDocument();
     })
 
@@ -113,7 +113,7 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const { container, queryByText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        const { container } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         userEvent.click(container.querySelector(".start-btn"));
         expect(container.querySelector(".start-btn")).not.toBeInTheDocument();
     })

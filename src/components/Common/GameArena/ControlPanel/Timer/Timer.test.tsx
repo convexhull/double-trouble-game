@@ -44,7 +44,7 @@ describe("<Timer />", () => {
             baseTime: 100,
             timeRemaining: 10
         }
-        const { container, queryByText } = render(<Timer {...testProps} />);
+        const { container } = render(<Timer {...testProps} />);
 
         expect(container.querySelector(".timer-digital__value")).toHaveTextContent(`${testProps.timeRemaining}`);
     })

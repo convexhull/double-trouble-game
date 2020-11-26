@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameArena } from "./GameArena";
-import { render, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 //mock components
 jest.mock('../../Common/GameArena/ControlPanel/ControlPanel');
@@ -29,7 +29,7 @@ describe("Double Trouble: <GameArena />", () => {
             timerRunning: false,
             onResetTimer: mockFunc
         }
-        const { container, queryByText } = render(<GameArena {...testProps} />);
+        const { queryByText } = render(<GameArena {...testProps} />);
         expect(queryByText("CONTROL PANEL COMPONENT")).toBeInTheDocument();
     })
 
@@ -40,7 +40,7 @@ describe("Double Trouble: <GameArena />", () => {
             timerRunning: false,
             onResetTimer: mockFunc
         }
-        let { container, queryByText } = render(<GameArena {...testProps} />);
+        let { queryByText } = render(<GameArena {...testProps} />);
         expect(queryByText("START BUTTON COMPONENT")).toBeInTheDocument();
     })
 
@@ -52,7 +52,7 @@ describe("Double Trouble: <GameArena />", () => {
             timerRunning: true,
             onResetTimer: mockFunc
         }
-        const { container, queryByText } = render(<GameArena {...testProps} />);
+        const { queryByText } = render(<GameArena {...testProps} />);
         expect(queryByText("GAMEPLAY COMPONENT")).toBeInTheDocument();
     })
 
@@ -67,7 +67,7 @@ describe("Double Trouble: <GameArena />", () => {
                 push: historyPush
             }
         }
-        const { rerender, container, queryByText } = render(<GameArena {...testProps} />);
+        const { rerender } = render(<GameArena {...testProps} />);
         //Since onResetTimer() is executed in componentDidUpdate(), a re-render is needed to test this 
         rerender(<GameArena {...testProps} />);
         expect(mockFunc).toHaveBeenCalledTimes(1);
@@ -85,7 +85,7 @@ describe("Double Trouble: <GameArena />", () => {
                 push: historyPush
             }
         }
-        const { rerender, container, queryByText } = render(<GameArena {...testProps} />);
+        const { rerender } = render(<GameArena {...testProps} />);
         //Since onResetTimer() is executed in componentDidUpdate(), a re-render is needed to test this 
         rerender(<GameArena {...testProps} />);
         expect(historyPush).toHaveBeenCalledWith('./result');

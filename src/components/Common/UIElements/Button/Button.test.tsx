@@ -23,7 +23,7 @@ describe("Customer <Button /> component", () => {
             children: "some text",
             clicked: mockFunc
         }
-        const { container, queryByText } = render(<Button {...testProps} />);
+        const { queryByText } = render(<Button {...testProps} />);
         expect(queryByText(testProps.children)).toBeInTheDocument();
     })
 
@@ -34,7 +34,7 @@ describe("Customer <Button /> component", () => {
             children: "some text",
             clicked: mockFunc
         }
-        const { container, queryByText } = render(<Button {...testProps} />);
+        const { queryByText } = render(<Button {...testProps} />);
         expect(queryByText(testProps.children)).toHaveClass(testProps.type);
     })
 
@@ -45,7 +45,7 @@ describe("Customer <Button /> component", () => {
             children: "some text",
             clicked: mockFunc
         }
-        const { container, queryByText } = render(<Button {...testProps} />);
+        const { queryByText } = render(<Button {...testProps} />);
         userEvent.click(queryByText(testProps.children));
         expect(mockFunc).toHaveBeenCalledTimes(1);
     })

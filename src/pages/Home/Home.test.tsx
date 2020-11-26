@@ -28,7 +28,7 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container } = render(<MemoryRouter>
+        render(<MemoryRouter>
             <Home {...testProps} />
         </MemoryRouter>);
         expect(mockFunc).toHaveBeenCalledTimes(1);
@@ -56,7 +56,7 @@ describe("<Home />", () => {
             availableGames: [],
             onLoadAllGames: mockFunc
         }
-        const { container, queryByText } = render(<MemoryRouter>
+        const { queryByText } = render(<MemoryRouter>
             <Home {...testProps} />
         </MemoryRouter>);
         expect(queryByText(/welcome/i)).toBeInTheDocument();
@@ -95,7 +95,7 @@ describe("<Home />", () => {
             }],
             onLoadAllGames: mockFunc
         }
-        const { container, queryByText } = render(<MemoryRouter>
+        const { queryByText } = render(<MemoryRouter>
             <Home {...testProps} />
         </MemoryRouter>);
         expect(queryByText("Double Trouble")?.getAttribute("href")).toBe("/double-trouble/intro");

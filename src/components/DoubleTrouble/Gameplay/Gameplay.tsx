@@ -22,7 +22,6 @@ import { Question, Answer } from '../../../shared/types/doubleTrouble';
 
 //import actions
 import * as gameActions from '../../../store/game/actionCreators';
-import { RootState } from '../../../store/store';
 
 /**
  * This Gameplay component consists of the actual game. This component is imported into the game arena.

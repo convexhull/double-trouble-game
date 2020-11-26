@@ -28,7 +28,7 @@ describe("<IntroductionPage />", () => {
             introText: "Please find the instructions for the game",
             onLoad: mockFunc
         }
-        const { container } = render(<BrowserRouter><IntroductionPage {...testProps} /></BrowserRouter>);
+        render(<BrowserRouter><IntroductionPage {...testProps} /></BrowserRouter>);
         expect(mockFunc).toHaveBeenCalledTimes(1);
     })
 

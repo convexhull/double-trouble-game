@@ -101,9 +101,13 @@ export class StartButton extends React.Component<AllProps, State> {
         }, 500);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.setIntervalReference);
+    }
+
     render() {
         /**
-         * Hacky way to simulate animation using CSS transition. Better modify this to use a react animation lib like react-spring etc. 
+         * Simulate animation using CSS transition. Better modify this to use a react animation lib like react-spring etc. 
          * 
          * # We are simply using JS to inject css classes. 
          * # timeRemaining decrease from 8 to 0 -> 8, 7, 6, 5.... 

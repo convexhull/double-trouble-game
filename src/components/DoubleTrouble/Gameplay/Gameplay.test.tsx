@@ -21,7 +21,7 @@ describe("Double Trouble: <Gameplay />", () => {
         const testProps = {
             onIncrementScore: mockFunc
         }
-        const { container, queryByText } = render(<Gameplay {...testProps} />);
+        const { queryByText } = render(<Gameplay {...testProps} />);
         expect(queryByText("QUESTIONCARD COMPONENT")).toBeInTheDocument();
     })
 
@@ -93,66 +93,6 @@ describe("Double Trouble: <Gameplay />", () => {
         //since our answer is correct, mockFunc should have been called
         expect(mockFunc).not.toBeCalledTimes(1);
     })
-
-
-
-    // it("should render <StartButton /> if timer is not running", () => {
-    //     const mockFunc = jest.fn();
-    //     const testProps = {
-    //         timeRemaining: 10,
-    //         timerRunning: false,
-    //         onResetTimer: mockFunc
-    //     }
-    //     let { container, queryByText } = render(<Gameplay {...testProps} />);
-    //     expect(queryByText("START BUTTON COMPONENT")).toBeInTheDocument();
-    // })
-
-
-    // it("should render <GamePlay /> if timer is running", () => {
-    //     const mockFunc = jest.fn();
-    //     const testProps = {
-    //         timeRemaining: 10,
-    //         timerRunning: true,
-    //         onResetTimer: mockFunc
-    //     }
-    //     const { container, queryByText } = render(<Gameplay {...testProps} />);
-    //     expect(queryByText("GAMEPLAY COMPONENT")).toBeInTheDocument();
-    // })
-
-    // it("should reset redux timer when time is up", async () => {
-    //     const mockFunc = jest.fn();
-    //     const historyPush = jest.fn();
-    //     const testProps = {
-    //         timeRemaining: 0,
-    //         timerRunning: true,
-    //         onResetTimer: mockFunc,
-    //         history: {
-    //             push: historyPush
-    //         }
-    //     }
-    //     const { rerender, container, queryByText } = render(<Gameplay {...testProps} />);
-    //     //Since onResetTimer() is executed in componentDidUpdate(), a re-render is needed to test this 
-    //     rerender(<Gameplay {...testProps} />);
-    //     expect(mockFunc).toHaveBeenCalledTimes(1);
-    // })
-
-
-    // it("should redirect the user to /result page once game time over", async () => {
-    //     const mockFunc = jest.fn();
-    //     const historyPush = jest.fn();
-    //     const testProps = {
-    //         timeRemaining: 0,
-    //         timerRunning: true,
-    //         onResetTimer: mockFunc,
-    //         history: {
-    //             push: historyPush
-    //         }
-    //     }
-    //     const { rerender, container, queryByText } = render(<Gameplay {...testProps} />);
-    //     //Since onResetTimer() is executed in componentDidUpdate(), a re-render is needed to test this 
-    //     rerender(<Gameplay {...testProps} />);
-    //     expect(historyPush).toHaveBeenCalledWith('./result');
-    // })
 
 })
 
