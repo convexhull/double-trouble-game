@@ -75,7 +75,7 @@ export const asyncFetchGameInfoStart = (): ThunkAction<void, RootState, unknown,
         dispatch(fetchGameInfoStart());
         try {
             let apiResponse = await Axios.get(`/game/c77f35e3-d41c-446c-af63-80f430a962d0`);
-            let apiResponseData: GameState = apiResponse.data;
+            let apiResponseData: GameInfo = apiResponse.data;
 
             dispatch(fetchGameInfoSuccess(apiResponseData));
 
@@ -85,7 +85,7 @@ export const asyncFetchGameInfoStart = (): ThunkAction<void, RootState, unknown,
     })
 }
 
-export const fetchGameInfoSuccess = (payload: GameState): AllActions => {
+export const fetchGameInfoSuccess = (payload: GameInfo): AllActions => {
 
     return {
         type: "FETCH_GAME_INFO_SUCCESS",

@@ -51,9 +51,7 @@ export type FetchAllGamesActions =
  * TYPES FOR GAME INFO RELATED ACTIONS
  */
 
-export const FETCH_GAME_INFO_START: string = "FETCH_GAME_INFO_START";
-export const FETCH_GAME_INFO_SUCCESS: string = "FETCH_GAME_INFO_SUCCESS";
-export const FETCH_GAME_INFO_FAILURE: string = "FETCH_GAME_INFO_FAILURE";
+
 
 //describe type field as string literal (and not as 'string'), to make use of discriminated union for type inference in reducers
 export type FetchGameInfoStartAction = {
@@ -62,7 +60,7 @@ export type FetchGameInfoStartAction = {
 
 export type FetchGameInfoSuccessAction = {
     type: "FETCH_GAME_INFO_SUCCESS";
-    payload: GameState;
+    payload: GameInfo
 };
 
 export type FetchGameInfoFailureAction = {
@@ -81,10 +79,6 @@ export type FetchGameInfoActions =
  * TYPES FOR GAME SCORE RELATED ACTIONS
  */
 
-export const INCREMENT_GAME_SCORE: string = "INCREMENT_GAME_SCORE";
-export const UPDATE_GAME_SCORE_START: string = "UPDATE_GAME_SCORE_START";
-export const UPDATE_GAME_SCORE_SUCCESS: string = "UPDATE_GAME_SCORE_SUCCESS";
-export const UPDATE_GAME_SCORE_FAILURE: string = "UPDATE_GAME_SCORE_FAILURE";
 
 export type UpdateGameScoreSuccessPayload = {
     id: string;

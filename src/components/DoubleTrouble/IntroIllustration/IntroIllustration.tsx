@@ -25,7 +25,7 @@ type PropsFromParents = {
 type AllProps = PropsFromParents;
 
 
-const IntroIllustration: React.FC<AllProps> = (props) => {
+export const IntroIllustration: React.FC<AllProps> = (props) => {
 
     let questionTextClasses = [classes["text-box"], classes["question"], classes["question--blue"]];
     let option1TextClasses = [classes["text-box"], classes["option"], classes["option--blue"]];
@@ -40,7 +40,7 @@ const IntroIllustration: React.FC<AllProps> = (props) => {
             </div>
             <div className={classes["options"]}>
                 <div className={classes["option-container"] + ' ' + classes["option-container--red"]}>
-                    <p className={option1TextClasses.join(' ')}>
+                    <p data-testid="first-option" className={option1TextClasses.join(' ')}>
                         RED
                     <img className={classes["wrong-icon"]} src={WrongIcon} alt="cross icon"/>
 
@@ -50,7 +50,7 @@ const IntroIllustration: React.FC<AllProps> = (props) => {
                     </p>
                 </div>
                 <div className={classes["option-container"]}>
-                    <p className={option2TextClasses.join(' ')}>
+                    <p data-testid="second-option" className={option2TextClasses.join(' ')}>
                         BLUE
                         <img className={classes["correct-icon"]} src={CorrectIcon} alt="tick icon"/>
 

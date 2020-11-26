@@ -102,8 +102,6 @@ export class StartButton extends React.Component<AllProps, State> {
     }
 
     render() {
-
-
         /**
          * Hacky way to simulate animation using CSS transition. Better modify this to use a react animation lib like react-spring etc. 
          * 
@@ -146,7 +144,7 @@ export class StartButton extends React.Component<AllProps, State> {
         if (!this.state.timerRunning) {
             startBtn = (
                 <div className={classes["start-btn"]} onClick={this.clickHandler}>
-                    <img src={StartBtnSvg} alt="" />
+                    <img src={StartBtnSvg} alt="start-button" />
                 </div>
             )
         }

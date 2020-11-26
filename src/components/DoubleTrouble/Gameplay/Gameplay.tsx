@@ -45,23 +45,18 @@ type PropsFromParents = {
 
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        currentScore: state.gameState.currentGameStats.current_score
-    }
-}
 
 const mapDispatchToProps = {
     onIncrementScore: () => gameActions.incrementGameScore()
 }
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type AllProps = PropsFromParents & PropsFromRedux;
 
-class Gameplay extends React.Component<AllProps, State> {
+export class Gameplay extends React.Component<AllProps, State> {
 
     constructor(props: AllProps) {
         super(props);
@@ -114,7 +109,6 @@ class Gameplay extends React.Component<AllProps, State> {
             </div>
         )
     }
-
 }
 
 
