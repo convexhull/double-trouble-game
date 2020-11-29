@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 describe("Customer <Button /> component", () => {
 
-    it("should render a component" , () => {
+    it("should render a component", () => {
         const mockFunc = jest.fn();
         const testProps = {
             type: "cta",

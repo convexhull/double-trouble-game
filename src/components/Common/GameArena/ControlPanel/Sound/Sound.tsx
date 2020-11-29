@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * This component displays volume on/off button and is imported into <ControlPanel />. 
+ */
 
 //import styles
 import classes from './Sound.module.css';
@@ -29,7 +32,6 @@ export class Sound extends React.Component<AllProps, State> {
     state = {
         soundOn: true
     }
-
 
     toggleSound = (): void => {
         this.setState((state) => {

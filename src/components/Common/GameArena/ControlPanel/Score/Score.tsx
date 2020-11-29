@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
+/**
+ * This component displays the current score of the user. Its imported into <ControlPanel /> which is further imported into
+ * <GameArena />
+ */
+
 
 //import styles
 import classes from './Score.module.css';

@@ -1,8 +1,16 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
+/**
+ * This Gameplay component consists of the actual game. This component is imported into the <GameArena />
+ * 
+ * # This component fetches question from data.json file and present them to the user. 
+ * # User's current score is maintained in the internal state.
+ * # Only when the game is over, it updates the final score in the redux store. 
+*/
 
-//import files
+
+//import question data
 import data from './questions.json';
 
 
@@ -22,16 +30,6 @@ import { Question, Answer } from '../../../shared/types/doubleTrouble';
 
 //import actions
 import * as gameActions from '../../../store/game/actionCreators';
-
-/**
- * This Gameplay component consists of the actual game. This component is imported into the game arena.
- * 
- * # This component fetches question from data.json file and present them to the user. 
- * # User's current score is maintained in the internal state.
- * # Only when the game is over, it updates the final score in the redux store. 
-*/
-
-
 
 
 type State = {
@@ -84,11 +82,11 @@ export class Gameplay extends React.Component<AllProps, State> {
 
         else {
             this.setState({
-                //display cross sign for 1/2 second and disable the options (in child component <QuestionCard />)
+                //display cross sign for 1/2 second and disable the options (used as prop in child component <QuestionCard />)
                 wrongChoice: true,
             })
             setTimeout(() => {
-                //After 500ms or 1/2 second, set wrongChoice to false. This will enable click and remove cross-sign from options in QuestionCard component. 
+                //After 500ms or 1/2 second, set wrongChoice to false. This will enable click and remove cross-sign from options in <QuestionCard />. 
                 this.setState(state => {
                     return {
                         wrongChoice: false,
@@ -100,7 +98,7 @@ export class Gameplay extends React.Component<AllProps, State> {
     }
 
     render() {
-        //Logic to pick current question. The modulo operator ensures that our questions get repeated once we are beyond
+        //Logic to pick current question -> The modulo operator ensures that our questions get repeated once we are beyond
         //the question bank limit.
         let question = data[this.state.questionCounter % data.length];
         return (

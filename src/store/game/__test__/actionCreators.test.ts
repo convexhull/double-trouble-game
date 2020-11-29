@@ -192,7 +192,7 @@ describe("Redux: gameState action creators", () => {
                 id: "test-id",
                 user_id: "test-user-id",
                 score: 10,
-                game_id: 'test-game-id',
+                game_id: "test-game-id",
             };
             const expectedActions = [
                 {
@@ -212,14 +212,14 @@ describe("Redux: gameState action creators", () => {
                         current_score: mockResponse.score,
                     },
                     currentGameInfo: {
-                        id: mockResponse.game_id
-                    }
+                        id: mockResponse.game_id,
+                    },
                 },
                 globalState: {
                     current_user: {
-                        id: mockResponse.user_id
-                    }
-                }
+                        id: mockResponse.user_id,
+                    },
+                },
             });
             await store.dispatch(actions.asyncUpdateGameScoreStart());
             expect(store.getActions()).toEqual(expectedActions);

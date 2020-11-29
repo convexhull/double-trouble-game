@@ -9,7 +9,7 @@ jest.mock('../Gameplay/Gameplay');
 
 
 describe("Double Trouble: <GameArena />", () => {
-    
+
     it("should render the component", () => {
         const mockFunc = jest.fn();
         const testProps = {

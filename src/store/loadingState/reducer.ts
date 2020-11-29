@@ -6,7 +6,7 @@ import { AllActions, LoadingState } from "./types";
 const initState: LoadingState = {
     UPDATE_GAME_SCORE: false,
     FETCH_ALL_GAMES: false,
-    FETCH_GAME_INFO: false
+    FETCH_GAME_INFO: false,
 };
 
 const loadingReducer: Reducer<LoadingState, AllActions> = (

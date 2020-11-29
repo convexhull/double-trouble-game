@@ -41,15 +41,15 @@ type PropsFromParents = {
 
 }
 
-const mapStateToProps = (state: RootState) =>  {
+const mapStateToProps = (state: RootState) => {
     return {
         timeRemaining: state.globalState.timer.timeRemaining,
         timerRunning: state.globalState.timer.running
     }
 }
 
-const mapDispatchToProps =  {
-    onResetTimer: () => globalActionCreators.timerReset() 
+const mapDispatchToProps = {
+    onResetTimer: () => globalActionCreators.timerReset()
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -62,8 +62,9 @@ export class GameArena extends React.Component<AllProps, State> {
 
 
     componentDidUpdate() {
-        //if the timer is running and the time remaining becomes zero, redirect the user to the result page and reset the timer.
-        if(this.props.timeRemaining <= 0 && this.props.timerRunning ){
+        //if the redux game timer is running and the time remaining becomes zero, it means game is over
+        //redirect the user to the result page and reset the timer.
+        if (this.props.timeRemaining <= 0 && this.props.timerRunning) {
             this.props.history.push(`./result`);
             this.props.onResetTimer();
         }

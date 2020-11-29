@@ -1,19 +1,14 @@
 import React from 'react';
 
-
-
 /**
  * 
  * This component displays the control panel consisting of Volume control, countdown timer progress bar and the scorecard
+ * It is imported into <GameArena /> (which is common for all games)
  * 
  */
 
 //import styles
 import classes from './ControlPanel.module.css';
-
-
-//import types
-
 
 
 //import components
@@ -22,9 +17,8 @@ import Score from './Score/Score';
 import Sound from './Sound/Sound';
 
 
-
 type State = {
-    
+
 }
 
 type PropsFromParents = {

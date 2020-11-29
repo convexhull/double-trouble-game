@@ -59,7 +59,7 @@ export class Home extends React.Component<AllProps, State> {
                 case "Double Trouble":
                     return (
                         <li key={el.id}>
-                            <Link  to="/double-trouble/intro">{el.name}</Link>
+                            <Link to="/double-trouble/intro">{el.name}</Link>
                         </li>
                     )
                 default:

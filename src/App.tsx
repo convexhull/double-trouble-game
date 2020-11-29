@@ -32,7 +32,7 @@ const mapDispatchToProps = {
 const connector = connect(null, mapDispatchToProps);
 
 
-type PropsFromRedux = ConnectedProps<typeof connector>; 
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 type AllProps = PropsFromParent & PropsFromRedux;
@@ -43,13 +43,13 @@ export class App extends React.Component<AllProps, State> {
     this.props.onFetchUserInfo();
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
         <Switch>
-            <Route exact path = "/" component = {HomePage} />
-            <Route  path = "/double-trouble" component = {DoubleTroubleGame} />
-            <Route component={Page404} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/double-trouble" component={DoubleTroubleGame} />
+          <Route component={Page404} />
         </Switch>
       </div>
     );
@@ -57,3 +57,6 @@ export class App extends React.Component<AllProps, State> {
 }
 
 export default connector(App);
+
+
+

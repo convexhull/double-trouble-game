@@ -41,11 +41,11 @@ describe("Redux: gameState reducers", () => {
             name: "test-name",
             intro_text: "test-intro_text",
             farewell_text: "test-farewell_text",
-            time:10
-        }
+            time: 10,
+        };
         const action = {
             type: "FETCH_GAME_INFO_SUCCESS",
-            payload: testPayload
+            payload: testPayload,
         };
         const expectedState = {
             currentGameInfo: testPayload,
@@ -76,7 +76,7 @@ describe("Redux: gameState reducers", () => {
             availableGames: [],
         };
         const action = {
-            type: "INCREMENT_GAME_SCORE"
+            type: "INCREMENT_GAME_SCORE",
         };
         const expectedState = {
             currentGameInfo: {
@@ -110,7 +110,7 @@ describe("Redux: gameState reducers", () => {
                 current_score: 0,
                 updatedScore: 0,
             },
-            availableGames: []
+            availableGames: [],
         };
         const testPayload = {
             id: "test-id",
@@ -120,7 +120,7 @@ describe("Redux: gameState reducers", () => {
         };
         const action = {
             type: "UPDATE_GAME_SCORE_SUCCESS",
-            payload: testPayload
+            payload: testPayload,
         };
         const expectedState = {
             currentGameInfo: {
@@ -154,18 +154,20 @@ describe("Redux: gameState reducers", () => {
                 current_score: 0,
                 updatedScore: 0,
             },
-            availableGames: []
+            availableGames: [],
         };
-        const testPayload = [{
-            id: "test-id",
-            name: "test-name",
-            intro_text: "test-intro_text",
-            farewell_text: "test-farewell_text",
-            time:10
-        }]
+        const testPayload = [
+            {
+                id: "test-id",
+                name: "test-name",
+                intro_text: "test-intro_text",
+                farewell_text: "test-farewell_text",
+                time: 10,
+            },
+        ];
         const action = {
             type: "FETCH_ALL_GAMES_SUCCESS",
-            payload: testPayload
+            payload: testPayload,
         };
         const expectedState = {
             currentGameInfo: {
@@ -180,7 +182,7 @@ describe("Redux: gameState reducers", () => {
                 current_score: 0,
                 updatedScore: 0,
             },
-            availableGames: testPayload
+            availableGames: testPayload,
         };
         expect(reducer(initState, action)).toEqual(expectedState);
     });

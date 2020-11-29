@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux';
 
 
 /**
- * This component displays user's score in the game and dispatches update action to update score info in the backend
- * and then shows the updated score. 
+ * This component on mount dispatches update action to update score info in the backend
+ * and then shows the updated score fetched from the backend
  */
 
 //import styles
@@ -16,9 +16,6 @@ import * as gameActions from '../../../store/game/actionCreators';
 
 //import types 
 import { RootState } from '../../../store/store';
-
-
-
 
 
 type State = {
@@ -72,7 +69,7 @@ export class GameResult extends React.Component<AllProps, State> {
                     </div>
                     <p className={classes["final-word"]}>
                         {this.props.farewellText}
-                </p>
+                    </p>
                 </React.Fragment>
             )
         }

@@ -37,7 +37,7 @@ describe("<App />", () => {
             availableGames: [],
             onFetchUserInfo: mockFunc
         }
-        const {queryByText} = render(<MemoryRouter initialEntries={["/"]}><App {...testProps} /></MemoryRouter>);
+        const { queryByText } = render(<MemoryRouter initialEntries={["/"]}><App {...testProps} /></MemoryRouter>);
         expect(queryByText("HOME COMPONENT")).toBeInTheDocument();
     })
 
@@ -57,7 +57,7 @@ describe("<App />", () => {
             availableGames: [],
             onFetchUserInfo: mockFunc
         }
-        const {  queryByText } = render(<MemoryRouter initialEntries={["/some-random-test-route"]}><App {...testProps} /></MemoryRouter>);
+        const { queryByText } = render(<MemoryRouter initialEntries={["/some-random-test-route"]}><App {...testProps} /></MemoryRouter>);
         expect(queryByText("PAGE404 COMPONENT")).toBeInTheDocument();
     })
 

@@ -3,12 +3,14 @@ import React from 'react';
 /**
  * 
  * This component receives questions from the parent component and displays the formatted question along with formatted options. 
+ * # Disable the options and displays cross-sign on wrong answer when a wrong answer is chosen. 
  * 
  */
 
 
 //import images
 import CrossSign from '../../../../assets/images/gamePlay/cross-sign.svg';
+
 //import styles
 import classes from './QuestionCard.module.css';
 
@@ -37,7 +39,8 @@ type AllProps = PropsFromParents;
 
 
 type State = {
-    //we use chosenChoiceIndex to display cross-sign when user chooses the wrong option
+    //chosenChoiceIndex is either 0 or 1. 0 means first option was chosen and 1 means second was chosen. 
+    //we use state.chosenChoiceIndex and state.wrongChoice to display cross-sign when user chooses the wrong option
     chosenChoiceIndex: number
 }
 
@@ -66,12 +69,12 @@ export class QuestionCard extends React.Component<AllProps, State> {
         //assign css classes dynamically to option texts(for font color assignment)
         let options = this.props.question.options.map((option, index) => {
             let optionTextClasses = [classes["text-box"], classes["option"]];
-            if(this.props.wrongChoice){
+            if (this.props.wrongChoice) {
                 //if a wrong choice is chosen, disable both options until wrongChoice is reset(by <Gameplay /> component after 500ms )
                 optionTextClasses.push(classes["click-disabled"]);
             }
             if (this.props.wrongChoice && index === this.state.chosenChoiceIndex) {
-                //if this option chosen and its a wrong choice, then add following css class to give pink background(background of the cross sign)
+                //add css class to give pink background(background of the cross sign) to the wrong choice(if wrong choice is chosen).
                 optionTextClasses.push(classes["wrong-choice-selected"]);
             } else {
                 if (option.color === "red") {

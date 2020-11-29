@@ -1,6 +1,6 @@
 import React from 'react';
 import { Gameplay } from "./Gameplay";
-import { render  } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
 //mock components
@@ -34,24 +34,24 @@ describe("Double Trouble: <Gameplay />", () => {
         //create instance of component so that we can execute the component method.
         const instance = component.getInstance();
         let question = {
-            "question" : {
-                "text" : "red",
-                "color" : "blue"
+            "question": {
+                "text": "red",
+                "color": "blue"
             },
-            "options" : [
+            "options": [
                 {
-                    "text" : "red",
-                    "color" : "blue"
+                    "text": "red",
+                    "color": "blue"
                 },
                 {
-                    "text" : "blue",
-                    "color" : "red"
+                    "text": "blue",
+                    "color": "red"
                 }
             ]
         };
         let answer = {
-            "text" : "blue",
-            "color" : "red"
+            "text": "blue",
+            "color": "red"
         };
         //execute component method
         instance.optionClickHandler(question, answer);
@@ -69,24 +69,24 @@ describe("Double Trouble: <Gameplay />", () => {
         //create instance of component so that we can execute the component method.
         const instance = component.getInstance();
         let question = {
-            "question" : {
-                "text" : "red",
-                "color" : "blue"
+            "question": {
+                "text": "red",
+                "color": "blue"
             },
-            "options" : [
+            "options": [
                 {
-                    "text" : "red",
-                    "color" : "blue"
+                    "text": "red",
+                    "color": "blue"
                 },
                 {
-                    "text" : "blue",
-                    "color" : "red"
+                    "text": "blue",
+                    "color": "red"
                 }
             ]
         };
         let answer = {
-            "text" : "red",
-            "color" : "blue"
+            "text": "red",
+            "color": "blue"
         };
         //execute component method
         instance.optionClickHandler(question, answer);

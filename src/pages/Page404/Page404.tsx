@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+/**
+ * 404 Page not found
+ * # When path doesn't match any specified route
+ */
+
 //import styles
 import classes from './Page404.module.css';
 

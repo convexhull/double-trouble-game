@@ -13,7 +13,7 @@ describe('Unit Test: <Sound />', () => {
         const { container } = render(<Sound />);
         expect(container).toBeInTheDocument();
     })
-    
+
     it("should display sound on icon by default", () => {
         const { queryByAltText } = render(<Sound />);
         const imageNode = queryByAltText("sound-on button");
@@ -24,7 +24,7 @@ describe('Unit Test: <Sound />', () => {
         const { queryByAltText } = render(<Sound />);
         const imageNode = queryByAltText("sound-on button");
         expect(imageNode).toBeInTheDocument();
-        if(!imageNode){
+        if (!imageNode) {
             throw new Error("Image node doesn't exist");
         }
         userEvent.click(imageNode);

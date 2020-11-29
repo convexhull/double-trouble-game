@@ -8,7 +8,7 @@ jest.mock("../ControlPanel/Score/Score");
 jest.mock("../ControlPanel/Sound/Sound");
 
 describe("<ControlPanel />", () => {
-    
+
 
     it("should render the component", () => {
         const { container } = render(<ControlPanel />);

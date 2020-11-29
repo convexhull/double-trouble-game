@@ -82,5 +82,5 @@ describe("<IntroductionPage />", () => {
         expect(queryByText("I understand")).toBeInTheDocument();
         expect(queryByTestId("link-to-play")?.getAttribute("href")).toBe("/play");
     })
-    
+
 })

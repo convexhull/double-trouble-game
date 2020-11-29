@@ -5,12 +5,8 @@ import { render } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 
 
-// jest.mock("../StartButton/Timer/Timer");
-// jest.mock("../StartButton/Score/Score");
-// jest.mock("../StartButton/Sound/Sound");
-
 describe("<StartButton />", () => {
-    
+
 
     it("should render the component", () => {
         const startGameTimerMock = jest.fn()
@@ -27,7 +23,7 @@ describe("<StartButton />", () => {
     })
 
 
-    
+
     it("should redirect to intro page if allowedTime is 0(not fetched from backend)", () => {
         const startGameTimerMock = jest.fn()
         const historyPushMock = jest.fn();
@@ -52,10 +48,10 @@ describe("<StartButton />", () => {
                 push: historyPushMock
             }
         }
-        const {  queryByAltText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
+        const { queryByAltText } = render(<BrowserRouter><StartButton {...testProps} /></BrowserRouter>);
         expect(queryByAltText("start-button")).toBeInTheDocument();
     })
-    
+
     it("should display link to intro page when timer not running", () => {
         const startGameTimerMock = jest.fn()
         const historyPushMock = jest.fn();
@@ -101,7 +97,7 @@ describe("<StartButton />", () => {
         //start internal timer by clicking start btn
         userEvent.click(container.querySelector(".start-btn"));
         expect(container.querySelector(".countdown-container")).toBeInTheDocument();
-    })    
+    })
 
     it("should stop displaying the start btn when internal timer started", () => {
         const startGameTimerMock = jest.fn()
@@ -118,7 +114,7 @@ describe("<StartButton />", () => {
         expect(container.querySelector(".start-btn")).not.toBeInTheDocument();
     })
 
-    it("should start central redux timer when internal timer of 4 seconds elapses", () =>  {
+    it("should start central redux timer when internal timer of 4 seconds elapses", () => {
         jest.useFakeTimers();
         const startGameTimerMock = jest.fn()
         const historyPushMock = jest.fn();

@@ -31,13 +31,9 @@ import DoubleTroubleIllustration from '../../DoubleTrouble/IntroIllustration/Int
 import Button from '../UIElements/Button/Button';
 
 
-
-
 type State = {
 
 }
-
-
 
 type PropsFromParent = {
 

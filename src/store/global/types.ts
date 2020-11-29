@@ -51,30 +51,26 @@ export type TimerActions =
     | TimerResetAction
     | TimerTickAction;
 
-
-
-
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * USER RELATED ACTIONS
  *
- * 
- * 
+ *
+ *
  */
 
 export const GET_USER_START: string = "GET_USER_START";
 export const GET_USER_SUCCESS: string = "GET_USER_SUCCESS";
 
-
 /**
  * Types for payloads for user related actions
  */
 export type GetUserSuccessPayload = {
-    name: string,
-    id: string,
-    email: string
+    name: string;
+    id: string;
+    email: string;
 };
 
 /**
@@ -93,21 +89,15 @@ export interface GetUserSuccessAction {
 }
 
 export interface GetUserFailureAction {
-    type: "GET_USER_FAILURE",
+    type: "GET_USER_FAILURE";
     payload: {
-        message: string
-    }
+        message: string;
+    };
 }
 
 export type UserActions =
     | GetUserStartAction
     | GetUserSuccessAction
-    | GetUserFailureAction ;
+    | GetUserFailureAction;
 
-
-
-
-export type GlobalStateActions = 
-    | TimerActions
-    | UserActions;
-
+export type GlobalStateActions = TimerActions | UserActions;

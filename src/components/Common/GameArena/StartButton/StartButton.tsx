@@ -59,6 +59,7 @@ export class StartButton extends React.Component<AllProps, State> {
 
 
     state = {
+        //time remaining of 8, is actually equivalent to 4 seconds, since we decrease counter every half second. 
         timeRemaining: 8,
         timerRunning: false,
     }
@@ -66,7 +67,7 @@ export class StartButton extends React.Component<AllProps, State> {
     componentDidMount() {
         //Handle the case of user refreshing or reaching directly to the game arena, without introduction page. 
         //Redirect the user to introduction page. 
-        if(this.props.allowedTime === 0){
+        if (this.props.allowedTime === 0) {
             this.props.history.push('./intro');
         }
     }
@@ -118,26 +119,26 @@ export class StartButton extends React.Component<AllProps, State> {
          */
         let greenLinesClasses = [classes["green-lines"]];
         let redLinesClasses = [classes["red-lines"]];
-        if(this.state.timeRemaining < 2) {
+        if (this.state.timeRemaining < 2) {
             greenLinesClasses.push(classes["green-lines--visible"]);
-            redLinesClasses.filter( (el) => el !== "red-lines--visible");
-        } 
+            redLinesClasses.filter((el) => el !== "red-lines--visible");
+        }
         else {
-            if(this.state.timeRemaining % 2){
+            if (this.state.timeRemaining % 2) {
                 redLinesClasses.push(classes["red-lines--visible"]);
             } else {
-                redLinesClasses.filter( (el) => el !== "red-lines--visible");
+                redLinesClasses.filter((el) => el !== "red-lines--visible");
             }
         }
 
-        
+
 
         let countdownDisplayBtn = null;
         if (this.state.timerRunning) {
             countdownDisplayBtn = (
                 <React.Fragment>
                     <div className={classes["countdown-container"]}>
-                        <div className={classes["countdown-display"]}><span>{this.state.timeRemaining >= 3 ? Math.floor((this.state.timeRemaining-1)/2) : "Go!"}</span></div>
+                        <div className={classes["countdown-display"]}><span>{this.state.timeRemaining >= 3 ? Math.floor((this.state.timeRemaining - 1) / 2) : "Go!"}</span></div>
                         <img src={GreenLinesSvg} className={greenLinesClasses.join(' ')} alt="green lines" />
                         <img src={RedLinesSvg} className={redLinesClasses.join(' ')} alt="red lines" />
                     </div>
@@ -155,6 +156,7 @@ export class StartButton extends React.Component<AllProps, State> {
 
         let instructions = null;
         if (!this.state.timerRunning) {
+            //display instructions only when timer not running
             instructions = (
                 <React.Fragment>
                     <p className={classes["start-game-text"]}>Start the game</p>

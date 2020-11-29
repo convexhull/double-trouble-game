@@ -17,10 +17,10 @@ type PropsFromParents = {
 
 type AllProps = PropsFromParents;
 
-export const Button: React.FC<AllProps> = (props) =>  {
+export const Button: React.FC<AllProps> = (props) => {
     let btnClasses = [classes["btn"]];
 
-    switch(props.type){
+    switch (props.type) {
         case "cta":
             btnClasses.push(classes["cta"]);
             break;

@@ -2,11 +2,10 @@ import React from 'react';
 
 /**
  * 
- * Demo question card for intro/rules description purpose. Imported into Introduction component, when user is playing
- * double trouble game.  
+ * Demo question card for intro/rules description purpose. Imported into <Introduction /> component and displayed before start
+ * of the game
  * 
  */
-
 
 
 //import styles
@@ -31,7 +30,6 @@ export const IntroIllustration: React.FC<AllProps> = (props) => {
     let option1TextClasses = [classes["text-box"], classes["option"], classes["option--blue"]];
     let option2TextClasses = [classes["text-box"], classes["option"], classes["option--red"]];
     //assign css classes dynamically to option texts(for font color assignment)
-
     return (
         <div className={classes["Container"]}>
             <div className={classes["question-container"]}>
@@ -42,7 +40,7 @@ export const IntroIllustration: React.FC<AllProps> = (props) => {
                 <div className={classes["option-container"] + ' ' + classes["option-container--red"]}>
                     <p data-testid="first-option" className={option1TextClasses.join(' ')}>
                         RED
-                    <img className={classes["wrong-icon"]} src={WrongIcon} alt="cross icon"/>
+                    <img className={classes["wrong-icon"]} src={WrongIcon} alt="cross icon" />
 
                     </p>
                     <p className={classes["option-tip"]}>
@@ -52,7 +50,7 @@ export const IntroIllustration: React.FC<AllProps> = (props) => {
                 <div className={classes["option-container"]}>
                     <p data-testid="second-option" className={option2TextClasses.join(' ')}>
                         BLUE
-                        <img className={classes["correct-icon"]} src={CorrectIcon} alt="tick icon"/>
+                        <img className={classes["correct-icon"]} src={CorrectIcon} alt="tick icon" />
 
                     </p>
                     <p className={classes["option-tip"]}>

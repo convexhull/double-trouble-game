@@ -4,13 +4,13 @@ import {
     TimerTickAction,
     TimerResetAction,
     UserActions,
-    GetUserSuccessPayload
-} from './types';
+    GetUserSuccessPayload,
+} from "./types";
 
-import { ThunkAction } from 'redux-thunk';
-import { Action } from 'redux';
-import { RootState } from '../store';
-import Axios from '../../axios/axios';
+import { ThunkAction } from "redux-thunk";
+import { Action } from "redux";
+import { RootState } from "../store";
+import Axios from "../../axios/axios";
 
 /**
  * This central redux store timer logic is for the game timer. And can be used for any game.
@@ -19,29 +19,30 @@ import Axios from '../../axios/axios';
 export const timerStart = (payload: TimerStartPayload): TimerStartAction => {
     return {
         type: "TIMER_START",
-        payload: payload
-    }
-}
-
+        payload: payload,
+    };
+};
 
 export const timerTick = (): TimerTickAction => {
     return {
-        type: "TIMER_TICK"
-    }
-}
+        type: "TIMER_TICK",
+    };
+};
 
 export const timerReset = (): TimerResetAction => {
     return {
-        type: "TIMER_RESET"
-    }
-}
+        type: "TIMER_RESET",
+    };
+};
 
-export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootState, unknown, Action<string> > => {
-    return (async (dispatch, getState) => {
-        const setIntervalId = setInterval(()=> {
+export const asyncGameTimerStart = (
+    baseTime: number
+): ThunkAction<void, RootState, unknown, Action<string>> => {
+    return async (dispatch, getState) => {
+        const setIntervalId = setInterval(() => {
             //periodically send ticks
 
-            if(getState().globalState.timer.timeRemaining === 1){
+            if (getState().globalState.timer.timeRemaining === 1) {
                 //the last second of the timer
 
                 //cleanup the setInterval in the last second
@@ -52,24 +53,23 @@ export const asyncGameTimerStart = (baseTime: number): ThunkAction<void, RootSta
             dispatch(timerTick());
         }, 1000);
 
-        dispatch(timerStart({
-            baseTime: baseTime
-        }));
-    })
-}
-
+        dispatch(
+            timerStart({
+                baseTime: baseTime,
+            })
+        );
+    };
+};
 
 /**
- * Action creators for GET_USER 
+ * Action creators for GET_USER
  */
 
 export const getUserStart = (): UserActions => {
     return {
-        type: "GET_USER_START"
-    }
-}
-
-
+        type: "GET_USER_START",
+    };
+};
 
 export const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
     return {
@@ -77,28 +77,32 @@ export const getUserSuccess = (payload: GetUserSuccessPayload): UserActions => {
         payload: {
             name: payload.name,
             id: payload.id,
-            email: payload.email
-        }
-    }
-}
+            email: payload.email,
+        },
+    };
+};
 
-export const getUserFailure = (payload: {message: string}): UserActions => {
+export const getUserFailure = (payload: { message: string }): UserActions => {
     return {
         type: "GET_USER_FAILURE",
-        payload: payload
-    }
-}
+        payload: payload,
+    };
+};
 
-export const asyncGetUserStart = (): ThunkAction<void, RootState, unknown, Action<string> > => {
+export const asyncGetUserStart = (): ThunkAction<
+    void,
+    RootState,
+    unknown,
+    Action<string>
+> => {
     return async (dispatch) => {
         dispatch(getUserStart());
         try {
-            let apiResponse = await Axios.get('/user');
+            let apiResponse = await Axios.get("/user");
             let apiResponseData = apiResponse.data;
             dispatch(getUserSuccess(apiResponseData));
-        } catch(e) {
-            dispatch(getUserFailure({message: e.message}));
+        } catch (e) {
+            dispatch(getUserFailure({ message: e.message }));
         }
-    }
-}
-
+    };
+};

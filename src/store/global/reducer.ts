@@ -1,24 +1,24 @@
-import { Reducer } from 'redux';
+import { Reducer } from "redux";
 
-import {
-    GlobalState,
-    GlobalStateActions,
-} from "./types";
+import { GlobalState, GlobalStateActions } from "./types";
 
 const initState: GlobalState = {
     timer: {
         timeRemaining: 0,
         running: false,
-        baseTime: 0
+        baseTime: 0,
     },
     current_user: {
-        id: '',
-        name: '',
-        email: ''
-    }
+        id: "",
+        name: "",
+        email: "",
+    },
 };
 
-const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, action) => {
+const reducer: Reducer<GlobalState, GlobalStateActions> = (
+    state = initState,
+    action
+) => {
     switch (action.type) {
         case "TIMER_TICK":
             return {
@@ -34,8 +34,8 @@ const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, a
                 timer: {
                     ...state.timer,
                     running: false,
-                    timeRemaining: 0
-                }
+                    timeRemaining: 0,
+                },
             };
         case "TIMER_START":
             /*rev*/
@@ -45,8 +45,8 @@ const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, a
                     ...state.timer,
                     running: true,
                     timeRemaining: action.payload.baseTime,
-                    baseTime: action.payload.baseTime
-                }
+                    baseTime: action.payload.baseTime,
+                },
             };
         case "GET_USER_SUCCESS":
             return {
@@ -55,9 +55,9 @@ const reducer: Reducer<GlobalState, GlobalStateActions > = (state = initState, a
                     ...state.current_user,
                     name: action.payload.name,
                     id: action.payload.id,
-                    email: action.payload.email
-                }
-            }
+                    email: action.payload.email,
+                },
+            };
         default:
             return state;
     }

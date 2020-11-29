@@ -31,7 +31,6 @@ type State = {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        //convert totalTime(s) to ms for smoother animation in countdown progress bar.
         baseTime: state.globalState.timer.baseTime,
         timeRemaining: state.globalState.timer.timeRemaining,
         allowedTime: state.gameState.currentGameInfo.time
@@ -51,7 +50,7 @@ type AllProps = PropsFromParents & PropsFromRedux;
 
 export class Timer extends React.Component<AllProps, State> {
     progressBarRef: React.RefObject<HTMLInputElement>;
-    constructor(props: AllProps){
+    constructor(props: AllProps) {
         super(props);
         this.progressBarRef = React.createRef();
         this.state = {
@@ -60,10 +59,10 @@ export class Timer extends React.Component<AllProps, State> {
     }
 
     componentDidMount() {
-        //For getting the maximum height of countdown timer progress bar. Used for calculating remaining height. 
-        if(this.progressBarRef.current){
+        //For getting the maximum height of countdown timer progress bar. Max ht. is used for calculating remaining height. 
+        if (this.progressBarRef.current) {
             let height = this.progressBarRef.current.clientHeight;
-            if(height !== this.state.progressBarFullHeight){
+            if (height !== this.state.progressBarFullHeight) {
                 this.setState({
                     progressBarFullHeight: height
                 })
@@ -74,13 +73,13 @@ export class Timer extends React.Component<AllProps, State> {
     render() {
         //logic for calculating progress bar height. If base time is not yet set, means redux timer hasn't started. So display full ht. 
         let remaining_height = this.state.progressBarFullHeight;
-        if(this.props.baseTime !== 0){
+        if (this.props.baseTime !== 0) {
             remaining_height = (this.state.progressBarFullHeight / this.props.baseTime) * (this.props.timeRemaining);
         }
         return (
             <div className={classes["Container"]}>
                 <div ref={this.progressBarRef} className={classes["timer-progressbar-container"]}>
-                    <div  className={classes["timer-progressbar"]} style={{ height: remaining_height }}>
+                    <div className={classes["timer-progressbar"]} style={{ height: remaining_height }}>
                     </div>
                 </div>
                 <div className={classes["timer-digital"]}>

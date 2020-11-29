@@ -1,6 +1,6 @@
 import React from 'react';
 import { QuestionCard } from "./QuestionCard";
-import { render  } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 
 
@@ -9,18 +9,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
+                "options": [
                     {
-                        "text" : "red",
-                        "color" : "blue"
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -36,18 +36,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
+                "options": [
                     {
-                        "text" : "red",
-                        "color" : "blue"
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -65,18 +65,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -95,18 +95,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -125,18 +125,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -153,18 +153,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -181,18 +181,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -214,18 +214,18 @@ describe("Double Trouble: <QuestionCard />", () => {
         const mockFunc = jest.fn();
         const testProps = {
             question: {
-                "question" : {
-                    "text" : "red",
-                    "color" : "blue"
+                "question": {
+                    "text": "red",
+                    "color": "blue"
                 },
-                "options" : [
-                    {       
-                        "text" : "red",
-                        "color" : "blue"
+                "options": [
+                    {
+                        "text": "red",
+                        "color": "blue"
                     },
                     {
-                        "text" : "blue",
-                        "color" : "red"
+                        "text": "blue",
+                        "color": "red"
                     }
                 ]
             },
@@ -243,7 +243,7 @@ describe("Double Trouble: <QuestionCard />", () => {
         userEvent.click(container.querySelector(".options")?.lastChild);
         expect(queryByAltText("cross-sign")).not.toBeInTheDocument();
     })
-    
+
 })
 
 

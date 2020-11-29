@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {  render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { GameResult } from './GameResult';
 
 
@@ -18,13 +18,13 @@ describe('Unit Test: <GameResult />', () => {
         expect(fakeProps.onUpdateScore).toHaveBeenCalledTimes(1);
     });
 
-    it("shouldn't render anything when score is updating/loading", () => {
+    it("shouldn't render anything when score is updating/loading", () => {
         const fakeProps = {
             loading: true,
             updatedScore: 10,
             onUpdateScore: jest.fn()
         }
-        const {queryByText } = render(<GameResult {...fakeProps} />);
+        const { queryByText } = render(<GameResult {...fakeProps} />);
         expect(queryByText("Thank you!")).not.toBeInTheDocument();
         expect(queryByText(/Your score is/i)).not.toBeInTheDocument();
         expect(queryByText("We will reach you as soon as we carefully review your interview.")).not.toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('Unit Test: <GameResult />', () => {
             onUpdateScore: jest.fn()
         }
         const { queryByText } = render(<GameResult {...fakeProps} />);
-        expect(queryByText(/Your score is/i)).toHaveTextContent(`${fakeProps.updatedScore}`);  
+        expect(queryByText(/Your score is/i)).toHaveTextContent(`${fakeProps.updatedScore}`);
     })
 
     it("should render thank you and feedback message, score message once finished loading", () => {
