@@ -73,12 +73,17 @@ export const asyncFetchGameInfoStart = (): ThunkAction<
             //     `/game/c77f35e3-d41c-446c-af63-80f430a962d0`
             // );
             // let apiResponseData: GameInfo = apiResponse.data;
+
+            /**
+             * Mocking backend by hard-coding
+             */
+            
             let apiResponseData = {
                 id: "c77f35e3",
                 name: "Double Trouble",
                 intro_text: "See what color the top word is. Select that color from the two options below. DON’T pay attention to what the top word says or the color of the two options below. It’s important to match the color of the top word with the meaning of the word below.",
                 farewell_text: "The text to display at the end of the game.",
-                time: 10
+                time: 60
             }
             dispatch(fetchGameInfoSuccess(apiResponseData));
         } catch (e) {
