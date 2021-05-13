@@ -77,12 +77,12 @@ export const asyncFetchGameInfoStart = (): ThunkAction<
             /**
              * Mocking backend by hard-coding
              */
-            
+
             let apiResponseData = {
                 id: "c77f35e3",
                 name: "Double Trouble",
                 intro_text: "See what color the top word is. Select that color from the two options below. DON’T pay attention to what the top word says or the color of the two options below. It’s important to match the color of the top word with the meaning of the word below.",
-                farewell_text: "The text to display at the end of the game.",
+                farewell_text: "Thanks for playing the game. We hope you had fun!",
                 time: 60
             }
             dispatch(fetchGameInfoSuccess(apiResponseData));
