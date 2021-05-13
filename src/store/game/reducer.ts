@@ -42,7 +42,6 @@ const reducer: Reducer<GameState, AllActions> = (state = initState, action) => {
                 ...state,
                 currentGameStats: {
                     ...state.currentGameStats,
-                    updatedScore: action.payload.score,
                 },
             };
         case "FETCH_ALL_GAMES_SUCCESS":

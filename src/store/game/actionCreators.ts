@@ -69,11 +69,17 @@ export const asyncFetchGameInfoStart = (): ThunkAction<
     return async (dispatch) => {
         dispatch(fetchGameInfoStart());
         try {
-            let apiResponse = await Axios.get(
-                `/game/c77f35e3-d41c-446c-af63-80f430a962d0`
-            );
-            let apiResponseData: GameInfo = apiResponse.data;
-
+            // let apiResponse = await Axios.get(
+            //     `/game/c77f35e3-d41c-446c-af63-80f430a962d0`
+            // );
+            // let apiResponseData: GameInfo = apiResponse.data;
+            let apiResponseData = {
+                id: "c77f35e3",
+                name: "Double Trouble",
+                intro_text: "See what color the top word is. Select that color from the two options below. DON’T pay attention to what the top word says or the color of the two options below. It’s important to match the color of the top word with the meaning of the word below.",
+                farewell_text: "The text to display at the end of the game.",
+                time: 10
+            }
             dispatch(fetchGameInfoSuccess(apiResponseData));
         } catch (e) {
             dispatch(fetchGameInfoFailure({ message: e.message }));
@@ -146,8 +152,14 @@ export const asyncUpdateGameScoreStart = (): ThunkAction<
             game_id: current_state.gameState.currentGameInfo.id,
         };
         try {
-            let apiResponse = await Axios.put("/score", data);
-            let apiResponseData = apiResponse.data;
+            // let apiResponse = await Axios.put("/score", data);
+            // let apiResponseData = apiResponse.data;
+            let apiResponseData = {
+                score: 48,
+                id: "slkdjfslk89wjwoejkl3wj893uf",
+                user_id: 'skljff89fwuoiwjf',
+                game_id: 'klsdjfkfsjl'
+            }
             dispatch(updateGameScoreSuccess(apiResponseData));
         } catch (e) {
             dispatch(

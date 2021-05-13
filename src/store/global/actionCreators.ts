@@ -98,8 +98,13 @@ export const asyncGetUserStart = (): ThunkAction<
     return async (dispatch) => {
         dispatch(getUserStart());
         try {
-            let apiResponse = await Axios.get("/user");
-            let apiResponseData = apiResponse.data;
+            // let apiResponse = await Axios.get("/user");
+            // let apiResponseData = apiResponse.data;
+            let apiResponseData = {
+                "id": "lk3j289efujoiiijjkljf89w",
+                "name": "John Doe",
+                "email": "john@doe.com"
+            }
             dispatch(getUserSuccess(apiResponseData));
         } catch (e) {
             dispatch(getUserFailure({ message: e.message }));
