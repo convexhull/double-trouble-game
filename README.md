@@ -1,6 +1,6 @@
 # Self Decode Challenge (Double Trouble Game)
 
-## Deployed [Here](https://selfdecode-double-trouble.netlify.app/)
+## Deployed [Here](https://dazzling-poitras-9d847d.netlify.app/)
 
 This React-Typescript project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)'s Typescript template.\
 \
