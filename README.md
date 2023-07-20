@@ -1,7 +1,5 @@
 # Double Trouble Game
 
-## Deployed [Here](https://dazzling-poitras-9d847d.netlify.app/)
-
 This React-Typescript project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)'s Typescript template.\
 \
 Because of this open [issue](https://github.com/facebook/create-react-app/issues/10110) with Create-React-App, **you may need to delete tsconfig.json every time the app is started using `yarn start`**. Same is true for `yarn test`. \
